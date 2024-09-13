@@ -16,13 +16,12 @@
             <li><a href="#">Orders</a></li>
             <li><a href="#">Category</a></li>
             <li><a href="{{ route('customer.create') }}">Customer</a></li>
-            <li><a href="{{ route('employee.create') }}">Employee</a></li>                    
-            <li><a href="#">Expense</a></li>
-            <li><a href="#">Payment</a></li>
-            <li><a href="#">Supplier</a></li>
-            <li><a href="#">Wastage</a></li>
-            <li><a href="#">Sells Location</a></li>
-            <li><a href="#">Request Order</a></li>
-            <li><a href="#">Transfer Voucher</a></li>
+            <li><a href="{{ route('employee.create') }}">Employee</a></li> 
+            <li><a href="{{ route('expense.create') }}">Expense</a></li>                    
+            <li><a href="{{ route('supplier.create') }}">Supplier</a></li>                    
+            <li><a href="{{ route('wastage.create') }}">Wastage</a></li>                    
+            <li><a href="{{ route('request.create') }}">Request Order</a></li>                    
+            <li><a href="{{ route('location.create') }}">Sells Location</a></li>                    
+            <li><a href="{{ route('transfer.voucher.create') }}">Transfer Voucher</a></li>                    
         </ul>
 </div>

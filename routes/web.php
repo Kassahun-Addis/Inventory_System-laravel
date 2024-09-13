@@ -5,6 +5,12 @@ use App\Http\Controllers\AssetController;
 use App\Http\Controllers\ProductStockController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\RequestController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransferVoucherController;
+use App\Http\Controllers\WastageController;
 
 
 

@@ -9,6 +9,6 @@ class TransferVoucherController extends Controller
     //
     public function create()
     {
-        return view('Travsfer_Voucher.transfer_voucher'); // Returns the product_stock.blade.php view
+        return view('Transfer_Voucher.transfer_voucher'); // Returns the product_stock.blade.php view
     }
 }
