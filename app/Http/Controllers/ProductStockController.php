@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\ProductStock; // Ensure this line is present
+=======
+>>>>>>> origin/master
 use Illuminate\Http\Request;
 
 class ProductStockController extends Controller
 {
+<<<<<<< HEAD
     public function store(Request $request)
     {
         \Log::info($request->all()); // Log all incoming data
@@ -37,3 +41,12 @@ class ProductStockController extends Controller
         return redirect()->route('product.stock.create')->with('success', 'Product stock added successfully.');
     }
 }
+=======
+    //
+    public function create()
+    {
+        return view('Product_Stock.product_stock'); // Returns the product_stock.blade.php view
+    }
+
+}
+>>>>>>> origin/master

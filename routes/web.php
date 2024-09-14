@@ -33,7 +33,10 @@ Route::post('/assets', [AssetController::class, 'store'])->name('assets.store');
 Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
 
 Route::get('/product-stock', [ProductStockController::class, 'create'])->name('product.stock.create');
+<<<<<<< HEAD
 Route::post('/product-stock', [ProductStockController::class, 'store'])->name('product.stock.store'); // Add this line
+=======
+>>>>>>> origin/master
 Route::get('/employee', [EmployeeController::class, 'create'])->name('employee.create');
 Route::get('/expense', [ExpenseController::class, 'create'])->name('expense.create');
 Route::get('/location', [LocationController::class, 'create'])->name('location.create');
