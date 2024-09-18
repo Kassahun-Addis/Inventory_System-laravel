@@ -22,6 +22,14 @@
             <li><a href="{{ route('wastage.create') }}">Wastage</a></li>                    
             <li><a href="{{ route('request.create') }}">Request Order</a></li>                    
             <li><a href="{{ route('location.create') }}">Sells Location</a></li>                    
-            <li><a href="{{ route('transfer.voucher.create') }}">Transfer Voucher</a></li>                    
+            <li><a href="{{ route('transfer.voucher.create') }}">Transfer Voucher</a></li>  
+            <li><a href="{{ route('transfer.voucher.create') }}">Product Category</a></li>                    
+            <li><a href="{{ route('transfer.voucher.create') }}">Expense Category</a></li>                    
+            <li><a href="{{ route('transfer.voucher.create') }}">Payment Metheod</a></li>  
+            <li><a href="{{ route('transfer.voucher.create') }}">Detail Specification</a></li>
+            <li><a href="{{ route('transfer.voucher.create') }}">Bank</a></li> 
+            <li><a href="{{ route('transfer.voucher.create') }}">Sell Order</a></li>
+            <li><a href="{{ route('transfer.voucher.create') }}">Sell Payment</a></li>                 
+                  
         </ul>
 </div>

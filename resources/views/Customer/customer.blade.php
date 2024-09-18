@@ -1,62 +1,47 @@
 @extends('layouts.app')
 
-@section('title', 'Product Stock - Add New')
+@section('title', 'Add New Customer')
 
 @section('content')
-        <div class="form-section mt-4">
-            <h3>Product Information</h3>
-            <form action="#" method="POST">
-                @csrf
-                <div class="row">
+    <div class="container mt-4">
+        <h3>Add New Customer</h3>
+        <form action="{{ route('customers.store') }}" method="POST">
+            @csrf
+            <div class="row">
                 <div class="col-md-6">
-                <div class="form-group">
-                    <label for="product_name" class="required">Product Name</label>
-                    <input type="text" id="product_name" name="product_name" required>
+                    <div class="form-group">
+                        <label for="name" class="required">Name</label>
+                        <input type="text" id="name" name="name" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_no" class="required">Phone Number</label>
+                        <input type="number" id="phone_no" name="phone_no" required class="form-control">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="category" class="required">Category</label>
-                    <select id="category" name="category" required>
-                        <option value="">Please select</option>
-                        <option value="category1">Category 1</option>
-                        <option value="category2">Category 2</option>
-                        <option value="category3">Category 3</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="quantity" class="required">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" required>
-                </div>
-                <div class="form-group">
-                    <label for="production_cost">Production Cost</label>
-                    <input type="number" id="production_cost" name="production_cost">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="tin_no" class="required">TIN Number</label>
+                        <input type="number" id="tin_no" name="tin_no" required class="form-control">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="selling_price" class="required">Selling Price</label>
-                    <input type="number" id="selling_price" name="selling_price" required>
-                </div>
-                <div class="form-group">
-                    <label for="alert_quantity" class="required">Alert Quantity</label>
-                    <input type="number" id="alert_quantity" name="alert_quantity" required>
-                </div>
-                <div class="form-group">
-                    <label for="details_specification">Details Specification</label>
-                    <select id="details_specification" name="details_specification">
-                        <option value="">Please select</option>
-                        <option value="spec1">Specification 1</option>
-                        <option value="spec2">Specification 2</option>
-                    </select>
-                </div>
-</div>
-                <div class="flex space-x-2">
-                    <button type="submit" class="btn-primary">Save</button>
-                    <button type="reset" class="btn-secondary">Reset</button>
-                    <a href="#" class="btn-link">Back to list</a>
-                </div>
-            </form>
-</div>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <a href="{{ route('customers.index') }}" class="btn btn-link">Back to list</a>
             </div>
-    
-    @endsection
-    </html>
+        </form>
+    </div>
+@endsection

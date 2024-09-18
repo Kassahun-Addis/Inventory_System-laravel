@@ -27,7 +27,7 @@
             align-items: center;
         }
         .sidebar {
-            width: 250px;
+            width: 230px;
             background-color: #f5f5f5;
             padding: 15px;
             position: fixed;
@@ -44,8 +44,8 @@
             background-color: #ddd;
         }
         .main-content {
-            margin-left: 250px;
-            padding: 20px;
+            margin-left: 240px;
+            padding: 0px;
         }
         .form-section {
             background-color: white;

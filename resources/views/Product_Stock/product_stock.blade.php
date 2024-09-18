@@ -9,7 +9,6 @@
 
         <div class="form-section mt-4">
             <h3>Product Information</h3>
-<<<<<<< HEAD
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -21,9 +20,6 @@
             @endif
             <!-- <form action="#" method="POST"> -->
             <form action="{{ route('product.stock.store') }}" method="POST">
-=======
-            <form action="#" method="POST">
->>>>>>> origin/master
                 @csrf
                 <div class = "row">
                 <div class="col-md-6">
