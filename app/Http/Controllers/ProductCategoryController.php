@@ -12,9 +12,9 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        // Fetch and display product stocks
-        $stocks = ProductStock::all();
-        return view('product_stock.index', compact('stocks'));
+        // Fetch and display product category
+        $product = ProductStock::all();
+        return view('Category.display_produc', compact('product'));
     }
 
     /**
@@ -22,7 +22,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        return view('Product_Stock.product_stock'); // Make sure the view exists
+        return view('Category.product'); // Make sure the view exists
 
     }
 
@@ -35,24 +35,16 @@ class ProductCategoryController extends Controller
 
         // Validate the incoming request data
         $request->validate([
-            'product_name' => 'required|string|max:255',
-            'category' => 'required|string',
-            'quantity' => 'required|integer',
-            'production_cost' => 'nullable|numeric',
-            'selling_price' => 'required|numeric',
-            'alert_quantity' => 'required|integer',
-            'details_specification' => 'nullable|string',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+           
         ]);
 
         // Create a new product stock entry using the ProductStock model
         ProductStock::create([
-            'product_name' => $request->input('product_name'),
-            'category' => $request->input('category'),
-            'quantity' => $request->input('quantity'),
-            'production_cost' => $request->input('production_cost'),
-            'selling_price' => $request->input('selling_price'),
-            'alert_quantity' => $request->input('alert_quantity'),
-            'details_specification' => $request->input('details_specification'),
+            'name' => $request->input('product_name'),
+            'description' => $request->input('description'),
+            
         ]);
 
         // Redirect or return response

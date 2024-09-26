@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('expense_categories', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->string('name', 50);
+            $table->text('description')->nullable();
+            $table->timestamps(0);
         });
     }
 

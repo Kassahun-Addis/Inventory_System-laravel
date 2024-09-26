@@ -49,13 +49,20 @@ Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.st
 //Route::get('/expense', [ExpenseController::class, 'create'])->name('expense.create');
 
 Route::get('/location', [LocationController::class, 'create'])->name('location.create');
-Route::get('/request', [RequestController::class, 'create'])->name('request.create');
+Route::get('/location', [LocationController::class, 'create'])->name('location.create');
+Route::get('/location', [LocationController::class, 'create'])->name('location.create');
+
+Route::get('/request/create', [RequestController::class, 'create'])->name('request.create');
+Route::get('/request', [RequestController::class, 'index'])->name('request.index');
+Route::post('/request', [RequestController::class, 'store'])->name('request.store');
 
 Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
 Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
 Route::get('/suppliers', [SupplierController::class, 'index'])->name('supplier.index');
 
-Route::get('/transfer-voucher', [TransferVoucherController::class, 'create'])->name('transfer.voucher.create');
+Route::get('/transfer-voucher/create', [TransferVoucherController::class, 'create'])->name('transfer.voucher.create');
+Route::get('/transfer-voucher', [TransferVoucherController::class, 'index'])->name('transfer.voucher.index');
+Route::post('/transfer-voucher', [TransferVoucherController::class, 'store'])->name('transfer.voucher.store');
 
 //Route::get('/wastages/create', [WastageController::class, 'create'])->name('wastages.create');
 //Route::post('/wastage', [WastageController::class, 'store'])->name('wastages.store');

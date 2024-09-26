@@ -12,7 +12,9 @@ class BankController extends Controller
      */
     public function index()
     {
-        //
+        // Fetch and display product stocks
+        $stocks = ProductStock::all();
+        return view('product_stock.index', compact('stocks'));
     }
 
     /**
@@ -20,7 +22,8 @@ class BankController extends Controller
      */
     public function create()
     {
-        //
+        return view('Product_Stock.product_stock'); // Make sure the view exists
+
     }
 
     /**
@@ -28,13 +31,31 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \Log::info($request->all()); // Log all incoming data
+
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+           
+        ]);
+
+        // Create a new product stock entry using the ProductStock model
+        ProductStock::create([
+            'name' => $request->input('product_name'),
+            'description' => $request->input('description'),
+            
+        ]);
+
+        // Redirect or return response
+        return redirect()->route('product.stock.index')->with('success', 'Product stock added successfully.');
     }
+    
 
     /**
      * Display the specified resource.
      */
-    public function show(Bank $bank)
+    public function show(ProductCategory $productCategory)
     {
         //
     }
@@ -42,7 +63,7 @@ class BankController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bank $bank)
+    public function edit(ProductCategory $productCategory)
     {
         //
     }
@@ -50,7 +71,7 @@ class BankController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bank $bank)
+    public function update(Request $request, ProductCategory $productCategory)
     {
         //
     }
@@ -58,7 +79,7 @@ class BankController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bank $bank)
+    public function destroy(ProductCategory $productCategory)
     {
         //
     }
