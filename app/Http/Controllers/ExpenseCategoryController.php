@@ -13,8 +13,8 @@ class ExpenseCategoryController extends Controller
     public function index()
     {
         // Fetch and display product stocks
-        $stocks = ProductStock::all();
-        return view('product_stock.index', compact('stocks'));
+        $expenses = ExpenseCategory::all();
+        return view('Category.display_expense', compact('expenses'));
     }
 
     /**
@@ -22,7 +22,7 @@ class ExpenseCategoryController extends Controller
      */
     public function create()
     {
-        return view('Product_Stock.product_stock'); // Make sure the view exists
+        return view('Category.expense'); // Make sure the view exists
 
     }
 
@@ -40,15 +40,15 @@ class ExpenseCategoryController extends Controller
            
         ]);
 
-        // Create a new product stock entry using the ProductStock model
-        ProductStock::create([
-            'name' => $request->input('product_name'),
+        // Create a new product stock entry using the ExpenseCategory model
+        ExpenseCategory::create([
+            'name' => $request->input('name'),
             'description' => $request->input('description'),
             
         ]);
 
         // Redirect or return response
-        return redirect()->route('product.stock.index')->with('success', 'Product stock added successfully.');
+        return redirect()->route('expense.category.index')->with('success', 'Product stock added successfully.');
     }
     
 

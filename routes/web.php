@@ -11,6 +11,11 @@ use App\Http\Controllers\RequestController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransferVoucherController;
 use App\Http\Controllers\WastageController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\BankController;
+use App\Http\Controllers\SpecificationController;
+use App\Http\Controllers\ExpenseCategoryController;
+
 
 
 
@@ -48,9 +53,9 @@ Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses.ind
 Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store'); // Store a new expense
 //Route::get('/expense', [ExpenseController::class, 'create'])->name('expense.create');
 
-Route::get('/location', [LocationController::class, 'create'])->name('location.create');
-Route::get('/location', [LocationController::class, 'create'])->name('location.create');
-Route::get('/location', [LocationController::class, 'create'])->name('location.create');
+Route::get('/location/create', [LocationController::class, 'create'])->name('location.create');
+Route::get('/location', [LocationController::class, 'index'])->name('location.index');
+Route::post('/location', [LocationController::class, 'store'])->name('location.store');
 
 Route::get('/request/create', [RequestController::class, 'create'])->name('request.create');
 Route::get('/request', [RequestController::class, 'index'])->name('request.index');
@@ -63,6 +68,23 @@ Route::get('/suppliers', [SupplierController::class, 'index'])->name('supplier.i
 Route::get('/transfer-voucher/create', [TransferVoucherController::class, 'create'])->name('transfer.voucher.create');
 Route::get('/transfer-voucher', [TransferVoucherController::class, 'index'])->name('transfer.voucher.index');
 Route::post('/transfer-voucher', [TransferVoucherController::class, 'store'])->name('transfer.voucher.store');
+
+Route::get('/product-category/create', [ProductCategoryController::class, 'create'])->name('product.category.create');
+Route::get('/product-category', [ProductCategoryController::class, 'index'])->name('product.category.index');
+Route::post('/product-category', [ProductCategoryController::class, 'store'])->name('product.category.store'); // Ensure this is correct
+
+Route::get('/expense-category/create', [ExpenseCategoryController::class, 'create'])->name('expense.category.create');
+Route::get('/expense-category', [ExpenseCategoryController::class, 'index'])->name('expense.category.index');
+Route::post('/expense-category', [ExpenseCategoryController::class, 'store'])->name('expense.category.store');
+
+Route::get('/bank-category/create', [BankController::class, 'create'])->name('bank.category.create');
+Route::get('/bank-category', [BankController::class, 'index'])->name('expense.category.index');
+Route::post('/bank-category', [BankController::class, 'store'])->name('expense.category.store');
+
+Route::get('/specification/create', [SpecificationController::class, 'create'])->name('specification.category.create');
+Route::get('/specification', [SpecificationController::class, 'index'])->name('specification.category.index');
+Route::post('/specification', [SpecificationController::class, 'store'])->name('specification.category.store');
+
 
 //Route::get('/wastages/create', [WastageController::class, 'create'])->name('wastages.create');
 //Route::post('/wastage', [WastageController::class, 'store'])->name('wastages.store');

@@ -12,9 +12,9 @@ class BankController extends Controller
      */
     public function index()
     {
-        // Fetch and display product stocks
-        $stocks = ProductStock::all();
-        return view('product_stock.index', compact('stocks'));
+        // Fetch and display product Bank
+        $banks = Bank::all();
+        return view('Category.display_bank', compact('banks'));
     }
 
     /**
@@ -22,7 +22,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        return view('Product_Stock.product_stock'); // Make sure the view exists
+        return view('Category.bank'); // Make sure the view exists
 
     }
 
@@ -40,15 +40,15 @@ class BankController extends Controller
            
         ]);
 
-        // Create a new product stock entry using the ProductStock model
-        ProductStock::create([
-            'name' => $request->input('product_name'),
+        // Create a new product stock entry using the Bank model
+        Bank::create([
+            'bank_name' => $request->input('name'),
             'description' => $request->input('description'),
             
         ]);
 
         // Redirect or return response
-        return redirect()->route('product.stock.index')->with('success', 'Product stock added successfully.');
+        return redirect()->route('expense.category.index')->with('success', 'Product stock added successfully.');
     }
     
 

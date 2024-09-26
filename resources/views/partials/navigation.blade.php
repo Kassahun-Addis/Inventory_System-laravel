@@ -23,11 +23,11 @@
             <li><a href="{{ route('request.create') }}">Request Order</a></li>                    
             <li><a href="{{ route('location.create') }}">Sells Location</a></li>                    
             <li><a href="{{ route('transfer.voucher.create') }}">Transfer Voucher</a></li>  
-            <li><a href="{{ route('transfer.voucher.create') }}">Product Category</a></li>                    
-            <li><a href="{{ route('transfer.voucher.create') }}">Expense Category</a></li>                    
+            <li><a href="{{ route('product.category.create') }}">Product Category</a></li>                    
+            <li><a href="{{ route('expense.category.create') }}">Expense Category</a></li>                    
             <li><a href="{{ route('transfer.voucher.create') }}">Payment Metheod</a></li>  
-            <li><a href="{{ route('transfer.voucher.create') }}">Detail Specification</a></li>
-            <li><a href="{{ route('transfer.voucher.create') }}">Bank</a></li> 
+            <li><a href="{{ route('specification.category.create') }}">Detail Specification</a></li>
+            <li><a href="{{ route('bank.category.create') }}">Bank</a></li> 
             <li><a href="{{ route('transfer.voucher.create') }}">Sell Order</a></li>
             <li><a href="{{ route('transfer.voucher.create') }}">Sell Payment</a></li>                 
                   

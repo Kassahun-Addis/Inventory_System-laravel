@@ -1,24 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Product Category - Add New')
+@section('title', 'Specification Category - Add New')
 
 @section('content')
 <div class="container mt-5">
-    <h2>Add New Product Category</h2>
+    <h2>Add New Specification Category</h2>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
     
     <div class="form-section">
-        <form action="{{ route('product.category.store') }}" method="POST">
+        <form action="{{ route('specification.category.store') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="name" class="required">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-
+                    
                     <div class="form-group">
                         <label for="description" class="required">Description</label>
                         <input type="text" class="form-control" id="description" name="description" required>

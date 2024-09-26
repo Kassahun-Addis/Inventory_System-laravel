@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('specifications', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('description', 250);
             $table->timestamps();
         });
     }
@@ -25,3 +26,4 @@ return new class extends Migration
         Schema::dropIfExists('specifications');
     }
 };
+

@@ -40,7 +40,7 @@
             <div class="form-group mt-3">
                 <button type="submit" class="btn btn-primary">Save</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>
-                <a href="{{ route('customers.index') }}" class="btn btn-link">Back to list</a>
+                <a href="{{ route('customerss.index') }}" class="btn btn-link">Back to list</a>
             </div>
         </form>
     </div>

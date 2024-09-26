@@ -12,9 +12,9 @@ class SpecificationController extends Controller
      */
     public function index()
     {
-        // Fetch and display product stocks
-        $stocks = ProductStock::all();
-        return view('product_stock.index', compact('stocks'));
+        // Fetch and display product specifications
+        $specifications = Specification::all();
+        return view('Category.display_specification', compact('specifications'));
     }
 
     /**
@@ -22,7 +22,7 @@ class SpecificationController extends Controller
      */
     public function create()
     {
-        return view('Product_Stock.product_stock'); // Make sure the view exists
+        return view('Category.specification'); // Make sure the view exists
 
     }
 
@@ -35,20 +35,18 @@ class SpecificationController extends Controller
 
         // Validate the incoming request data
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:255',
            
         ]);
 
-        // Create a new product stock entry using the ProductStock model
-        ProductStock::create([
-            'name' => $request->input('product_name'),
+        // Create a new product stock entry using the Specification model
+        Specification::create([
             'description' => $request->input('description'),
             
         ]);
 
         // Redirect or return response
-        return redirect()->route('product.stock.index')->with('success', 'Product stock added successfully.');
+        return redirect()->route('specification.category.index')->with('success', 'Product stock added successfully.');
     }
     
 

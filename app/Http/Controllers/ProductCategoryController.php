@@ -13,8 +13,8 @@ class ProductCategoryController extends Controller
     public function index()
     {
         // Fetch and display product category
-        $product = ProductStock::all();
-        return view('Category.display_produc', compact('product'));
+        $product = ProductCategory::all();
+        return view('Category.display_product', compact('product'));
     }
 
     /**
@@ -40,15 +40,15 @@ class ProductCategoryController extends Controller
            
         ]);
 
-        // Create a new product stock entry using the ProductStock model
-        ProductStock::create([
-            'name' => $request->input('product_name'),
+        // Create a new product stock entry using the ProductCategory model
+        ProductCategory::create([
+            'name' => $request->input('name'),
             'description' => $request->input('description'),
             
         ]);
 
         // Redirect or return response
-        return redirect()->route('product.stock.index')->with('success', 'Product stock added successfully.');
+        return redirect()->route('product.category.index')->with('success', 'Product category added successfully.');
     }
     
 
