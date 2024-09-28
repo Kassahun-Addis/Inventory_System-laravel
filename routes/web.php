@@ -13,8 +13,10 @@ use App\Http\Controllers\TransferVoucherController;
 use App\Http\Controllers\WastageController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BankController;
+use App\Exports\BankCategoryExport;
 use App\Http\Controllers\SpecificationController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\SellPaymentController;
 use App\Http\Controllers\ExpenseCategoryController;
 
 
@@ -84,6 +86,7 @@ Route::post('/bank-category', [BankController::class, 'store'])->name('bank.cate
 Route::get('/bank-category/{id}/edit', [BankController::class, 'edit'])->name('bank-category.edit');
 Route::put('/bank-category/{bank}', [BankController::class, 'update'])->name('banks.update');
 Route::delete('/bank-category/{bank}', [BankController::class, 'destroy'])->name('banks.destroy');
+Route::get('bank-category/export', [BankController::class, 'exportToExcel'])->name('bank.category.export');
 
 Route::get('/payment-method-category/list', [PaymentMethodController::class, 'index'])->name('payment-method.category.index');
 Route::get('/payment-method-category/create', [PaymentMethodController::class, 'create'])->name('payment-method.category.create');
@@ -103,5 +106,8 @@ Route::post('/specification', [SpecificationController::class, 'store'])->name('
 Route::get('/wastages', [WastageController::class, 'index'])->name('wastages.index');
 Route::get('/wastages/create', [WastageController::class, 'create'])->name('wastage.create'); // Define the create route
 Route::post('/wastages/store', [WastageController::class, 'store'])->name('wastages.store'); // Define the store route
+
+Route::get('/sell-payment/create', [SellPaymentController::class, 'create'])->name('sell-payment.create');
+
 
 

@@ -1,7 +1,10 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Bank;
 use Illuminate\Http\Request;
 
@@ -11,13 +14,13 @@ class BankController extends Controller
     {
         $search = $request->input('search'); // Get the search term
         $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
-    
+
         // Query the banks with search and pagination
         $banks = Bank::when($search, function ($query) use ($search) {
             return $query->where('bank_name', 'like', '%' . $search . '%')
-                         ->orWhere('description', 'like', '%' . $search . '%');
+                        ->orWhere('description', 'like', '%' . $search . '%');
         })->paginate($perPage);
-    
+
         return view('Category.display_bank', compact('banks', 'search', 'perPage'));
     }
 
@@ -71,5 +74,11 @@ class BankController extends Controller
         $bank->delete();
 
         return redirect()->route('bank.category.index')->with('success', 'Bank deleted successfully.');
+    }
+
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'bank_categories.xlsx');
     }
 }

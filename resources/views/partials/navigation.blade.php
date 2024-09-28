@@ -2,25 +2,41 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <style>
-    /* Ensure the header is fixed */
-    .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 50;
-    }
+   /* Ensure the header is fixed */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+}
 
-    /* Prevent main content from hiding behind the fixed header */
-    .main-content {
-        margin-top: 75px; /* Adjust this based on your header height */
-    }
+/* Prevent main content from hiding behind the fixed header */
+.main-content {
+    margin-top: 75px; /* Adjust this based on your header height */
+    position: relative; /* Ensure main content stays below sidebar */
+    z-index: 1; /* Lower z-index to ensure it stays below sidebar */
+}
 
-    /* Sidebar styles */
-    #sidebar {
-        transform: translateX(0); /* Show sidebar by default on large devices */
-        transition: transform 0.3s ease; /* Smooth transition */
-    }
+/* Sidebar styles */
+#sidebar {
+    transform: translateX(0); /* Default visible */
+    transition: transform 0.3s ease; /* Smooth transition */
+    z-index: 100; /* Increase z-index to ensure it overrides other content */
+}
+
+/* Overlay for mobile menu */
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; /* Initially hidden */
+    z-index: 90; /* Ensure the overlay is between sidebar and main content */
+}
+
+.hidden {
+    display: none; /* Ensure hidden elements are not displayed */
+}
 
     /* Hide sidebar off-screen on small devices */
     @media (max-width: 768px) {
@@ -32,6 +48,7 @@
         }
         #menu-toggle {
             display: block; /* Show menu toggle button on small devices */
+            background:blue;
         }
     }
 
@@ -67,11 +84,19 @@
     @media (max-width: 768px) {
         #sidebar {
             transform: translateX(-100%); /* Hide sidebar off-screen */
+            background: bg-gray-800;
         }
         #sidebar.active {
             transform: translateX(0); /* Show sidebar */
+            
         }
     }
+
+    ul.mt-0 {
+    margin-top: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
 
 </style>
 
@@ -134,7 +159,7 @@
         <li><a href="{{ route('wastage.create') }}" class="flex items-center p-2 hover:bg-gray-700 rounded"><i class="fas fa-trash mr-2"></i>Wastage</a></li>
         <li><a href="{{ route('location.create') }}" class="flex items-center p-2 hover:bg-gray-700 rounded"><i class="fas fa-map-marker-alt mr-2"></i>Sells Location</a></li>
         <li><a href="{{ route('transfer.voucher.create') }}" class="flex items-center p-2 hover:bg-gray-700 rounded"><i class="fas fa-exchange-alt mr-2"></i>Transfer Voucher</a></li>
-        <li><a href="{{ route('transfer.voucher.create') }}" class="flex items-center p-2 hover:bg-gray-700 rounded"><i class="fas fa-file-invoice-dollar mr-2"></i>Sell Payment</a></li>
+        <li><a href="{{ route('sell-payment.create') }}" class="flex items-center p-2 hover:bg-gray-700 rounded"><i class="fas fa-file-invoice-dollar mr-2"></i>Sell Payment</a></li>
     </ul>
 </div>
 
