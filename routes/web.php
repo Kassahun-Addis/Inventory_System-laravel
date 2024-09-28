@@ -14,6 +14,7 @@ use App\Http\Controllers\WastageController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\SpecificationController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ExpenseCategoryController;
 
 
@@ -54,7 +55,7 @@ Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.st
 //Route::get('/expense', [ExpenseController::class, 'create'])->name('expense.create');
 
 Route::get('/location/create', [LocationController::class, 'create'])->name('location.create');
-Route::get('/location', [LocationController::class, 'index'])->name('location.index');
+Route::get('/location', [LocationController::class, 'index'])->name('locations.index');
 Route::post('/location', [LocationController::class, 'store'])->name('location.store');
 
 Route::get('/request/create', [RequestController::class, 'create'])->name('request.create');
@@ -77,9 +78,19 @@ Route::get('/expense-category/create', [ExpenseCategoryController::class, 'creat
 Route::get('/expense-category', [ExpenseCategoryController::class, 'index'])->name('expense.category.index');
 Route::post('/expense-category', [ExpenseCategoryController::class, 'store'])->name('expense.category.store');
 
+Route::get('/bank-category/list', [BankController::class, 'index'])->name('bank.category.index');
 Route::get('/bank-category/create', [BankController::class, 'create'])->name('bank.category.create');
-Route::get('/bank-category', [BankController::class, 'index'])->name('expense.category.index');
-Route::post('/bank-category', [BankController::class, 'store'])->name('expense.category.store');
+Route::post('/bank-category', [BankController::class, 'store'])->name('bank.category.store');
+Route::get('/bank-category/{id}/edit', [BankController::class, 'edit'])->name('bank-category.edit');
+Route::put('/bank-category/{bank}', [BankController::class, 'update'])->name('banks.update');
+Route::delete('/bank-category/{bank}', [BankController::class, 'destroy'])->name('banks.destroy');
+
+Route::get('/payment-method-category/list', [PaymentMethodController::class, 'index'])->name('payment-method.category.index');
+Route::get('/payment-method-category/create', [PaymentMethodController::class, 'create'])->name('payment-method.category.create');
+Route::post('/payment-method-category', [PaymentMethodController::class, 'store'])->name('payment-method.category.store');
+Route::get('/payment-method-category/{id}/edit', [PaymentMethodController::class, 'edit'])->name('payment-method-category.edit');
+Route::put('/payment-method-category/{bank}', [PaymentMethodController::class, 'update'])->name('payment-method.update');
+Route::delete('/payment-method-category/{bank}', [PaymentMethodController::class, 'destroy'])->name('payment-method.destroy');
 
 Route::get('/specification/create', [SpecificationController::class, 'create'])->name('specification.category.create');
 Route::get('/specification', [SpecificationController::class, 'index'])->name('specification.category.index');

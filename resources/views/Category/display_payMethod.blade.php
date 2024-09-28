@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Bank Category List')
+@section('title', 'Payment Method Category List')
 
 @section('content')
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Bank Category List</h2>
-        <a href="{{ route('bank.category.create') }}" class="btn btn-primary">Add New</a>
+        <h2>Payment Method Category List</h2>
+        <a href="{{ route('payment-method.category.create') }}" class="btn btn-primary">Add New</a>
     </div>
     
     @if(session('success'))
@@ -15,7 +15,7 @@
     
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
-            <form action="{{ route('bank.category.index') }}" method="GET" class="form-inline">
+            <form action="{{ route('payment-method.category.index') }}" method="GET" class="form-inline">
                 <div class="form-group mr-2">
                     <select name="perPage" class="form-control" onchange="this.form.submit()">
                         <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
@@ -26,7 +26,7 @@
                 </div>
             </form>
         </div>
-        <form action="{{ route('bank.category.index') }}" method="GET" class="form-inline">
+        <form action="{{ route('payment-method.category.index') }}" method="GET" class="form-inline">
             <div class="form-group">
                 <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request('search') }}">
                 <button type="submit" class="btn btn-primary ml-1">Search</button>
@@ -39,19 +39,17 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($banks as $bank)
             <tr>
-                <td>{{ $bank->bank_id }}</td>
-                <td>{{ $bank->bank_name }}</td>
-                <td>{{ $bank->description }}</td>
+                <td>{{ $bank->id }}</td>
+                <td>{{ $bank->name }}</td>
                 <td>
-                    <a href="{{ route('bank-category.edit', $bank->bank_id) }}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route('banks.destroy', $bank->bank_id) }}" method="POST" style="display:inline;">
+                    <a href="{{ route('payment-method-category.edit', $bank->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="{{ route('payment-method.destroy', $bank->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>

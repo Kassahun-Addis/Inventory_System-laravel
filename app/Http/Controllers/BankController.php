@@ -7,80 +7,69 @@ use Illuminate\Http\Request;
 
 class BankController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        // Fetch and display product Bank
-        $banks = Bank::all();
-        return view('Category.display_bank', compact('banks'));
+        $search = $request->input('search'); // Get the search term
+        $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
+    
+        // Query the banks with search and pagination
+        $banks = Bank::when($search, function ($query) use ($search) {
+            return $query->where('bank_name', 'like', '%' . $search . '%')
+                         ->orWhere('description', 'like', '%' . $search . '%');
+        })->paginate($perPage);
+    
+        return view('Category.display_bank', compact('banks', 'search', 'perPage'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('Category.bank'); // Make sure the view exists
-
+        return view('Category.bank');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        \Log::info($request->all()); // Log all incoming data
+        \Log::info($request->all());
 
-        // Validate the incoming request data
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-           
         ]);
 
-        // Create a new product stock entry using the Bank model
         Bank::create([
             'bank_name' => $request->input('name'),
             'description' => $request->input('description'),
-            
         ]);
 
-        // Redirect or return response
-        return redirect()->route('expense.category.index')->with('success', 'Product stock added successfully.');
-    }
-    
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProductCategory $productCategory)
-    {
-        //
+        return redirect()->route('bank.category.create')->with('success', 'Product stock added successfully.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProductCategory $productCategory)
+    public function edit($id)
     {
-        //
+        $bank = Bank::findOrFail($id);
+        return view('Category.edit_bank', compact('bank'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        $bank = Bank::findOrFail($id);
+        $bank->update([
+            'bank_name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ]);
+
+        return redirect()->route('bank.category.index')->with('success', 'Bank updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ProductCategory $productCategory)
+    public function destroy($id)
     {
-        //
+        $bank = Bank::findOrFail($id);
+        $bank->delete();
+
+        return redirect()->route('bank.category.index')->with('success', 'Bank deleted successfully.');
     }
 }

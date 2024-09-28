@@ -10,9 +10,17 @@ class PaymentMethodController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->input('search'); // Get the search term
+        $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
+    
+        // Query the banks with search and pagination
+        $banks = PaymentMethod::when($search, function ($query) use ($search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })->paginate($perPage);
+    
+        return view('Category.display_payMethod', compact('banks', 'search', 'perPage'));
     }
 
     /**
@@ -20,7 +28,7 @@ class PaymentMethodController extends Controller
      */
     public function create()
     {
-        //
+        return view('Category.payment_method');
     }
 
     /**
@@ -28,7 +36,17 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \Log::info($request->all());
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        PaymentMethod::create([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect()->route('payment-method.category.create')->with('success', 'Payment Method added successfully.');
     }
 
     /**
@@ -42,24 +60,37 @@ class PaymentMethodController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PaymentMethod $paymentMethod)
+    public function edit($id)
     {
-        //
+        $bank = PaymentMethod::findOrFail($id);
+        return view('Category.edit_payMethod', compact('bank'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PaymentMethod $paymentMethod)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $bank = PaymentMethod::findOrFail($id);
+        $bank->update([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect()->route('payment-method.category.index')->with('success', 'Payment Method updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PaymentMethod $paymentMethod)
+    public function destroy($id)
     {
-        //
+        $bank = PaymentMethod::findOrFail($id);
+        $bank->delete();
+
+        return redirect()->route('payment-method.category.index')->with('success', 'Payment Method deleted successfully.');
     }
 }

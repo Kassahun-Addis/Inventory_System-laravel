@@ -9,8 +9,8 @@
 
         <div class="form-section mt-4">
             <h3>Location Information</h3>
-            <form action="#" method="POST">
-                @csrf
+            <form action="{{ route('location.store') }}" method="POST">
+            @csrf
                 <div class = "row">
                 <div class="col-md-6">
                 <div class="form-group">
@@ -26,7 +26,6 @@
                 <div class="flex space-x-2">
                     <button type="submit" class="btn-primary">Save</button>
                     <button type="reset" class="btn-secondary">Reset</button>
-                    <a href="#" class="btn-link">Back to list</a>
                 </div>
 </div>
             </form>

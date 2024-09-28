@@ -1,0 +1,27 @@
+    
+    
+    
+    2	Order_id	int(11)		                11	payment_date	date						
+	3	customer_name	varchar(50)				12	transaction_no	varchar(50)				
+	4	seller_name	varchar(50)					13	fs_number	int(11)			
+	5	sells_location	varchar(50)				14	withholding_voucher_no	double				
+	6	productName	int(11)						15	subtotal	double		
+	7	deposit_amount	double					16	withhold	double			
+	8	due_amount	double						17	discount	double		
+	9	payment_method	varchar(50)				18	vat	double				
+	10	bank_name	varchar(50)					19	total_price	double			
+                                                20	Time	
+
+
+
+    1	OrderID Primary	int(11)			11	withhold	double	
+	2	customer_name	varchar(50)		12	discount	double
+	3	OrderDate	date				13	total_price	decimal(10,2)
+	4	DeliveryDate	date			14	sells_location	varchar(50)	
+	5	Status	varchar(50)				15	sells_person	varchar(50)
+	6	product_name	varchar(100)	16	reference	varchar(50)			
+	7	unit_price	double				17	reference_check	tinyint(4)
+	8	quantity	int(11)				18	withhold_check	tinyint(4)
+	9	subtotal	double				19	discount_check	double
+	10	vat	double				        20	quantity_available	int(11)
+                                        21	id_product	int(11)

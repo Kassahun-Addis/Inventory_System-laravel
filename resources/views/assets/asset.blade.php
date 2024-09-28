@@ -8,12 +8,12 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    
+
     <div class="form-section">
         <form action="{{ route('assets.store') }}" method="POST">
             @csrf
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="asset_name" class="required">Asset Name</label>
                         <input type="text" class="form-control" id="asset_name" name="asset_name" required>
@@ -43,7 +43,7 @@
                         <textarea class="form-control" id="description" name="description"></textarea>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="assigned_to">Assigned To</label>
                         <input type="text" class="form-control" id="assigned_to" name="assigned_to">
@@ -72,5 +72,5 @@
             </div>
         </form>
     </div>
- @endsection
-    </html>
+</div>
+@endsection

@@ -6,8 +6,6 @@
     <title>@yield('title', 'OSAKA')</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM0p2ryg1z7V8L7tGt6vZ3k5s0o5X3qvX4y4" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">                                                                                                                       
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -44,8 +42,13 @@
             background-color: #ddd;
         }
         .main-content {
-            margin-left: 240px;
             padding: 0px;
+            transition: margin-left 0.3s ease; /* Smooth transition */
+        }
+        @media (min-width: 768px) {
+            .main-content {
+                margin-left: 240px; /* Keep fixed margin for larger screens */
+            }
         }
         .form-section {
             background-color: white;

@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Bank Category - Add New')
+@section('title', 'Payment Method Category - Add New')
 
 @section('content')
 <div class="container mt-5">
-    <h2>Add New Bank Category</h2>
+    <h2>Add New Payment Method Category</h2>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
     
     <div class="form-section">
-        <form action="{{ route('bank.category.store') }}" method="POST">
+        <form action="{{ route('payment-method.category.store') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -18,18 +18,12 @@
                         <label for="name" class="required">Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
-
-                    <div class="form-group">
-                        <label for="description" class="required">Description</label>
-                        <input type="text" class="form-control" id="description" name="description" required>
-                    </div>
-                   
                 </div>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-custom">Save</button>
                 <button type="reset" class="btn btn-secondary btn-custom">Reset</button>
-                <a href="{{ route('bank.category.index') }}" class="btn btn-secondary btn-custom">Back to list</a> <!-- Updated Back to list button -->
+                <a href="{{ route('payment-method.category.index') }}" class="btn btn-secondary btn-custom">Back to list</a> <!-- Updated Back to list button -->
             </div>
         </form>
     </div>
