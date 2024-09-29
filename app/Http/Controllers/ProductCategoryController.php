@@ -10,13 +10,19 @@ class ProductCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Fetch and display product category
-        $product = ProductCategory::all();
-        return view('Category.display_product', compact('product'));
-    }
+        $search = $request->input('search'); // Get the search term
+        $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
 
+        // Query the banks with search and pagination
+         $product = ProductCategory::when($search, function ($query) use ($search) {
+            return $query->where('bank_name', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%');
+        })->paginate($perPage);
+        return view('Category.display_product', compact('product'));
+   }
+    
     /**
      * Show the form for creating a new resource.
      */

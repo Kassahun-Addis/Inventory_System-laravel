@@ -7,11 +7,19 @@ use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
 {
-    public function index()
+    
+    public function index(Request $request)
     {
-        $expenses = Expense::all();
+        $search = $request->input('search'); // Get the search term
+        $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
+
+        // Query the banks with search and pagination
+         $expenses = Expense::when($search, function ($query) use ($search) {
+            return $query->where('bank_name', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%');
+        })->paginate($perPage);
         return view('Expense.index', compact('expenses'));
-    }
+   }
 
     public function create()
     {

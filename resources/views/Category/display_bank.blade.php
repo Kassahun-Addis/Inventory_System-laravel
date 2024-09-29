@@ -4,73 +4,100 @@
 
 @section('content')
 <div class="container mt-5">
+<h2 style="text-align: center; padding:10px;">Bank Category List</h2>
+
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Bank Category List</h2>
-        <a href="{{ route('bank.category.create') }}" class="btn btn-primary">Add New</a>
+    <!-- <a href="{{ route('bank.category.create') }}" class="btn btn-primary">Add New</a> -->
     </div>
     
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-            <form action="{{ route('bank.category.index') }}" method="GET" class="form-inline">
-                <div class="form-group mr-2">
+
+   <div class="row mb-3" style="display: flex; justify-content: space-between; align-items: center;">
+    <!-- Entries selection and Add New button -->
+    <div class="col-12 col-md-6 d-flex justify-content-between mb-2 mb-md-0">
+        <!-- Per Page Selection -->
+        <form action="{{ route('bank.category.index') }}" method="GET" class="form-inline" style="flex: 1;">
+            <div class="form-group">
                 <span>Show
-                    <select name="perPage" class="form-control" onchange="this.form.submit()">
+                    <select name="perPage" class="form-control" onchange="this.form.submit()" style="display: inline-block; width: auto;">
                         <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
                         <option value="25" {{ request('perPage') == 25 ? 'selected' : '' }}>25</option>
                         <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
                         <option value="100" {{ request('perPage') == 100 ? 'selected' : '' }}>100</option>
                     </select>
-                    entries</span>
+                    entries
+                </span>
+            </div>
+        </form>
+
+        <!-- Add New Button -->
+        <a href="{{ route('bank.category.create') }}" class="btn btn-primary ml-2">Add New</a>
+    </div>
+
+    <!-- Search and Export buttons -->
+    <div class="col-12 col-md-6 d-flex justify-content-end align-items-center">
+        <form action="{{ route('bank.category.index') }}" method="GET" class="form-inline" style="flex: 1;">
+            <div class="form-group w-100" style="display: flex; align-items: center;">
+                <!-- Search input takes more space on small devices -->
+                <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request('search') }}" style="flex-grow: 1; margin-right: 5px; min-width: 0;">
+
+                <!-- Search button -->
+                <button type="submit" class="btn btn-primary mr-1">Search</button>
+
+                <!-- Export dropdown on small devices -->
+                <div class="d-block d-md-none dropdown ml-1">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="exportDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Export
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="exportDropdown">
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="printAllBankDetails()">PDF</a>
+                        <a class="dropdown-item" href="{{ route('bank.category.export') }}">Excel</a>
+                    </div>
                 </div>
-            </form>
-            <!-- Show entries label -->
-            <!-- <div class="form-group">
-                    <span>Show {{ request('perPage', 10) }} entries</span>
-            </div> -->
-        </div>
-        <form action="{{ route('bank.category.index') }}" method="GET" class="form-inline">
-            <div class="form-group">
-                <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request('search') }}">
-                <button type="submit" class="btn btn-primary ml-1">Search</button>
-                <button type="button" class="btn btn-primary ml-1" onclick="printAllBankDetails()">PDF</button>
-                <button type="button" class="btn btn-primary ml-1" onclick="window.location.href='{{ route('bank.category.export') }}'">Excel</button>
+
+                <!-- Separate buttons for larger devices -->
+                <div class="d-none d-md-block ml-1">
+                    <button type="button" class="btn btn-primary" onclick="printAllBankDetails()">PDF</button>
+                    <button type="button" class="btn btn-primary ml-1" onclick="window.location.href='{{ route('bank.category.export') }}'">Excel</button>
+                </div>
             </div>
         </form>
     </div>
+</div>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($banks as $bank)
-            <tr>
-                <td>{{ $bank->bank_id }}</td>
-                <td>{{ $bank->bank_name }}</td>
-                <td>{{ $bank->description }}</td>
-                <td>
-                    <a href="{{ route('bank-category.edit', $bank->bank_id) }}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route('banks.destroy', $bank->bank_id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
-                    </form>
-                    <!-- Print button -->
-                   <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->bank_id }}', '{{ $bank->bank_name }}', '{{ $bank->description }}')">Print</button>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+<!-- Responsive table wrapper -->
+<div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($banks as $bank)
+                <tr>
+                    <td>{{ $bank->bank_id }}</td>
+                    <td>{{ $bank->bank_name }}</td>
+                    <td>{{ $bank->description }}</td>
+                    <td class="text-nowrap">
+                        <a href="{{ route('bank-category.edit', $bank->bank_id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('banks.destroy', $bank->bank_id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                        </form>
+                        <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->bank_id }}', '{{ $bank->bank_name }}', '{{ $bank->description }}')">Print</button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
     <!-- Showing entries information -->
     <div class="mt-3">
@@ -107,8 +134,6 @@
         </div>
     </div>
 </div>
-
-
 
 <!-- JavaScript function to print bank details in table format with headers on top -->
 <script>
@@ -171,9 +196,9 @@ function printAllBankDetails() {
     // Loop through the banks data
     banks.forEach(bank => {
         printWindow.document.write('<tr>');
-        printWindow.document.write(`<td>${bank.bank_id}</td>`); // Use bank_id here
-        printWindow.document.write(`<td>${bank.bank_name}</td>`); // Use bank_name here
-        printWindow.document.write(`<td>${bank.description}</td>`); // Use description here
+        printWindow.document.write(<td>${bank.bank_id}</td>); // Use bank_id here
+        printWindow.document.write(<td>${bank.bank_name}</td>); // Use bank_name here
+        printWindow.document.write(<td>${bank.description}</td>); // Use description here
 
         // Add more fields as needed
         printWindow.document.write('</tr>');

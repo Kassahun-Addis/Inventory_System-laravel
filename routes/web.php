@@ -41,7 +41,7 @@ Route::get('/assets', [AssetController::class, 'index'])->name('assets.index');
 //Route::get('/customer.create', [CustomerController::class, 'create'])->name('customer.create');
 //Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
 Route::get('customer/create', [CustomerController::class, 'create'])->name('customer.create');
-Route::get('customers', [CustomerController::class, 'index'])->name('customerss.index');
+Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
 Route::post('customers/store', [CustomerController::class, 'store'])->name('customers.store');
 
 

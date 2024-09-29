@@ -8,12 +8,19 @@ use Illuminate\Http\Request;
 class ProductStockController extends Controller
 {
     
-    public function index()
+   
+public function index(Request $request)
     {
-        // Fetch and display product stocks
-        $stocks = ProductStock::all();
+        $search = $request->input('search'); // Get the search term
+        $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
+
+        // Query the banks with search and pagination
+         $stocks = ProductStock::when($search, function ($query) use ($search) {
+            return $query->where('bank_name', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%');
+        })->paginate($perPage);
         return view('product_stock.index', compact('stocks'));
-    }
+   }
 
     public function create()
     {

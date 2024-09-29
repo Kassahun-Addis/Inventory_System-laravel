@@ -38,7 +38,8 @@
                     <div class="flex space-x-2">
                         <button type="submit" class="btn-primary">Save</button>
                         <button type="reset" class="btn-secondary">Reset</button>
-                        <a href="{{ route('wastages.index') }}" class="btn-link">Back to list</a>
+                        <a href="{{ route('wastages.index') }}" class="btn btn-secondary btn-custom">Back to list</a> <!-- Updated Back to list button -->
+
                     </div>
                 </div>
             </div>
