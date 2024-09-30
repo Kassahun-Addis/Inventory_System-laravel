@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\Supplier; // Import the Supplier model
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    public function index()
+    
+    public function index(Request $request)
     {
-        $suppliers = Supplier::all();
-        return view('Supplier.index', compact('suppliers'));
-    }
+        $search = $request->input('search'); // Get the search term
+        $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
 
+        // Query the banks with search and pagination
+         $suppliers = Supplier::when($search, function ($query) use ($search) {
+            return $query->where('bank_name', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%');
+        })->paginate($perPage);
+        return view('Supplier.index', compact('suppliers'));
+   }
+   
     public function create()
     {
         return view('Supplier.supplier'); // Returns the supplier creation view
@@ -46,6 +55,11 @@ class SupplierController extends Controller
     
         // Redirect to the index page with a success message
         return redirect()->route('supplier.index')->with('success', 'Supplier added successfully.');
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'supplier.xlsx');
     }
     
 }

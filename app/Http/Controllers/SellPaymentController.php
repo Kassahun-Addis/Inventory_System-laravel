@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use Illuminate\Http\Request;
 
 class SellPaymentController extends Controller
@@ -101,5 +102,10 @@ class SellPaymentController extends Controller
         // $bank->delete();
 
         // return redirect()->route('bank.category.index')->with('success', 'Bank deleted successfully.');
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'sell_payment.xlsx');
     }
 }

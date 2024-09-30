@@ -2,20 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\Location; // Import the expense model
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $locations = Location::all();
+        $search = $request->input('search'); // Get the search term
+        $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
+
+        // Query the banks with search and pagination
+         $locations = Location::when($search, function ($query) use ($search) {
+            return $query->where('bank_name', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%');
+        })->paginate($perPage);
         return view('Sells_Location.index', compact('locations'));
-    }
+   }
 
     public function create()
     {
-        return view('Sells_Location.location'); // Returns the product_stock.blade.php view
+        return view('Sells_Location.location'); // Returns the locations_stock.blade.php view
     }
 
         public function store(Request $request)
@@ -41,5 +49,10 @@ class LocationController extends Controller
         // Redirect to the index page with a success message
         return redirect()->route('locations.index')->with('success', 'Location added successfully.');
     } 
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'locations.xlsx');
+    }
     
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
@@ -92,5 +93,10 @@ class PaymentMethodController extends Controller
         $bank->delete();
 
         return redirect()->route('payment-method.category.index')->with('success', 'Payment Method deleted successfully.');
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'payment_method.xlsx');
     }
 }

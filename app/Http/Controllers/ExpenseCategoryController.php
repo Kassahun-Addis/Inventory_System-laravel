@@ -10,14 +10,20 @@ class ExpenseCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        // Fetch and display product stocks
-        $expenses = ExpenseCategory::all();
-        return view('Category.display_expense', compact('expenses'));
-    }
 
-    /**
+     public function index(Request $request)
+     {
+         $search = $request->input('search'); // Get the search term
+         $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
+ 
+         // Query the banks with search and pagination
+          $expenses = ExpenseCategory::when($search, function ($query) use ($search) {
+             return $query->where('bank_name', 'like', '%' . $search . '%')
+                         ->orWhere('description', 'like', '%' . $search . '%');
+         })->paginate($perPage);
+         return view('Category.display_expense', compact('expenses'));
+     }
+       /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -82,5 +88,10 @@ class ExpenseCategoryController extends Controller
     public function destroy(ProductCategory $productCategory)
     {
         //
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'expense_categories.xlsx');
     }
 }

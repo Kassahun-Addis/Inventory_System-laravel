@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\Specification;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,19 @@ class SpecificationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+     public function index(Request $request)
     {
-        // Fetch and display product specifications
-        $specifications = Specification::all();
+        $search = $request->input('search'); // Get the search term
+        $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
+
+        // Query the banks with search and pagination
+         $specifications = Specification::when($search, function ($query) use ($search) {
+            return $query->where('bank_name', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%');
+        })->paginate($perPage);
         return view('Category.display_specification', compact('specifications'));
-    }
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -80,5 +88,10 @@ class SpecificationController extends Controller
     public function destroy(ProductCategory $productCategory)
     {
         //
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'specification.xlsx');
     }
 }
