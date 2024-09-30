@@ -69,6 +69,8 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-custom">Save</button>
                 <button type="reset" class="btn btn-secondary btn-custom">Reset</button>
+                <a href="{{ route('assets.index') }}" class="btn btn-secondary btn-custom">Back to list</a> <!-- Updated Back to list button -->
+
             </div>
         </form>
     </div>
