@@ -68,7 +68,7 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-custom">Save</button>
-                <button type="reset" class="btn btn-secondary btn-custom">Reset</button>
+                <button type="reset" class="btn btn-secondary btn-custom">Reset</button>    
             </div>
         </form>
     </div>
