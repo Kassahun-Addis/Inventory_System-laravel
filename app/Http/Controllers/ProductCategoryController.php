@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
@@ -88,5 +89,10 @@ class ProductCategoryController extends Controller
     public function destroy(ProductCategory $productCategory)
     {
         //
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'product_categories.xlsx');
     }
 }

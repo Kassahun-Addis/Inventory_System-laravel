@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\AssetModel;
 use Illuminate\Http\Request;
 
@@ -66,6 +67,11 @@ class AssetController extends Controller
 
     // Redirect or return response
     return redirect()->route('assets.index')->with('success', 'Asset added successfully.');
+}
+// Add this method to your controller
+public function exportToExcel()
+{
+    return Excel::download(new BankCategoryExport, 'assets.xlsx');
 }
 
 }

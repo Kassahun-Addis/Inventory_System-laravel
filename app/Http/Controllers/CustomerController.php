@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -44,6 +45,11 @@ class CustomerController extends Controller
         Customer::create($request->all());
 
         return redirect()->route('customerss.index')->with('success', 'Customer added successfully.');
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'customers.xlsx');
     }
 }
 

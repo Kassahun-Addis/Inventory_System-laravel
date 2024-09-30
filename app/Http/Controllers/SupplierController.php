@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\Supplier; // Import the Supplier model
 use Illuminate\Http\Request;
 
@@ -54,6 +55,11 @@ class SupplierController extends Controller
     
         // Redirect to the index page with a success message
         return redirect()->route('supplier.index')->with('success', 'Supplier added successfully.');
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'supplier.xlsx');
     }
     
 }

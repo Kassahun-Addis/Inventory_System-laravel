@@ -1,66 +1,63 @@
 @extends('layouts.app')
 
-@section('title', 'Product Stock - Add New')
+@section('title', 'Shipment - Add New')
 
 @section('content')
     <header class="header" style="background-color: #4caf50;">
-        <h2>Product Stock, Add New</h2>
+        <h2>Shipment, Add New</h2>
     </header>
 
         <div class="form-section mt-4">
-            <h3>Product Information</h3>
+            <h3>Shipment Information</h3>
             <form action="#" method="POST">
                 @csrf
-                <div class = "row">
+                <div class="row">
                 <div class="col-md-6">
                 <div class="form-group">
-                    <label for="product_name" class="required">Product Name</label>
-                    <input type="text" id="product_name" name="product_name" required>
+                    <label for="Assigned_Person" class="required">Assigned Person</label>
+                    <input type="text" class="form-control" id="Assigned_Person" name="Assigned_Person" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="category" class="required">Category</label>
-                    <select id="category" name="category" required>
-                        <option value="">Please select</option>
-                        <option value="category1">Category 1</option>
-                        <option value="category2">Category 2</option>
-                        <option value="category3">Category 3</option>
-                    </select>
+                    <label for="Carrier" class="required">Carrier</label>
+                    <input type="text" class="form-control" id="Carrier" name="Carrier" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="quantity" class="required">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" required>
+                    <label for="Shipment_Date">Shipment Date</label>
+                    <input type="date" class="form-control" id="Shipment_Date" name="Shipment_Date" required>
                 </div>
+            </div>
+
+                <div class="col-md-6">
                 <div class="form-group">
-                    <label for="production_cost">Production Cost</label>
-                    <input type="number" id="production_cost" name="production_cost">
+                    <label for="Tracking_Number" class="required">Tracking Number</label>
+                    <input type="text" class="form-control" id="Tracking_Number" name="Tracking_Number" required>
                 </div>
-</div>
-<div class="col-md-6">
+
                 <div class="form-group">
-                    <label for="selling_price" class="required">Selling Price</label>
-                    <input type="number" id="selling_price" name="selling_price" required>
+                    <label for="Shipping_Address" class="required">Shipping Address</label>
+                    <input type="text" class="form-control" id="Shipping_Address" name="Shipping_Address" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="alert_quantity" class="required">Alert Quantity</label>
-                    <input type="number" id="alert_quantity" name="alert_quantity" required>
+                    <label for="Shipping_Cost" class="required">Shipping Cost</label>
+                    <input type="number" class="form-control" id="Shipping_Cost" name="Shipping_Cost" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="details_specification">Details Specification</label>
-                    <select id="details_specification" name="details_specification">
-                        <option value="">Please select</option>
-                        <option value="spec1">Specification 1</option>
-                        <option value="spec2">Specification 2</option>
-                    </select>
+                    <label for="Status" class="required">Status</label>
+                    <input type="text" class="form-control" id="Status" name="Status" required>
                 </div>
+            </div>
+        </div> 
                 <div class="flex space-x-2">
                     <button type="submit" class="btn-primary">Save</button>
                     <button type="reset" class="btn-secondary">Reset</button>
                     <a href="{{ route('transfer.voucher.index') }}" class="btn btn-secondary btn-custom">Back to list</a> <!-- Updated Back to list button -->
                 </div>
-</div>
-            </form>
-        </div>
-</div>
+        </form>
+    </div>
     
 @endsection
 </html>

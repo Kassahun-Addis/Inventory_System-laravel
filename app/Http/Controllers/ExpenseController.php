@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\Expense; // Import the expense model
 use Illuminate\Http\Request;
 
@@ -50,6 +51,11 @@ class ExpenseController extends Controller
     
         // Redirect to the index page with a success message
         return redirect()->route('expenses.index')->with('success', 'Expense added successfully.');
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'expenses.xlsx');
     }
     
 }

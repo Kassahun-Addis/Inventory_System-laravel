@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -23,5 +24,10 @@ class EmployeeController extends Controller
     public function create()
     {
         return view('Employee.employee'); // Returns the product_stock.blade.php view
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'employees.xlsx');
     }
 }

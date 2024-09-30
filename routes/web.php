@@ -35,6 +35,7 @@ Route::get('/', function () {
 Route::get('/assets/create', [AssetController::class, 'create'])->name('assets.create');
 Route::post('/assets', [AssetController::class, 'store'])->name('assets.store');
 Route::get('/assets', [AssetController::class, 'index'])->name('assets.index');
+Route::post('assets/export', [AssetController::class, 'exportToExcel'])->name('assets.export');
 
 // The existing routes remain the same
 //Route::get('/Product_Stock/product_stock', [AssetController::class, 'product_stock'])->name('Product_Stock.product_stock');
@@ -43,22 +44,28 @@ Route::get('/assets', [AssetController::class, 'index'])->name('assets.index');
 Route::get('customer/create', [CustomerController::class, 'create'])->name('customer.create');
 Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
 Route::post('customers/store', [CustomerController::class, 'store'])->name('customers.store');
+Route::post('customers/export', [CustomerController::class, 'exportToExcel'])->name('customers.export');
 
 
 Route::get('/product-stock/create', [ProductStockController::class, 'create'])->name('product.stock.create');
 Route::get('/product-stock/index', [ProductStockController::class, 'index'])->name('product.stock.index');
+Route::post('product-stock/export', [ProductStockController::class, 'exportToExcel'])->name('product-stock.export');
+
 
 Route::post('/product-stock/store', [ProductStockController::class, 'store'])->name('product.stock.store'); // Add this line
 Route::get('/employee', [EmployeeController::class, 'create'])->name('employee.create');
+Route::post('employee/export', [EmployeeController::class, 'exportToExcel'])->name('employee.export');
 
 Route::get('/expenses/create', [ExpenseController::class, 'create'])->name('expense.create'); // Show the form to create a new expense
 Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses.index'); // Display all expenses
 Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store'); // Store a new expense
 //Route::get('/expense', [ExpenseController::class, 'create'])->name('expense.create');
+Route::post('expenses/export', [ExpenseController::class, 'exportToExcel'])->name('expenses.export');
 
 Route::get('/location/create', [LocationController::class, 'create'])->name('location.create');
 Route::get('/location', [LocationController::class, 'index'])->name('locations.index');
 Route::post('/location', [LocationController::class, 'store'])->name('location.store');
+Route::post('location/export', [LocationController::class, 'exportToExcel'])->name('location.export');
 
 Route::get('/request/create', [RequestController::class, 'create'])->name('request.create');
 Route::get('/request', [RequestController::class, 'index'])->name('request.index');
@@ -67,18 +74,26 @@ Route::post('/request', [RequestController::class, 'store'])->name('request.stor
 Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
 Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
 Route::get('/suppliers', [SupplierController::class, 'index'])->name('supplier.index');
+Route::post('supplier/export', [SupplierController::class, 'exportToExcel'])->name('supplier.export');
+
 
 Route::get('/transfer-voucher/create', [TransferVoucherController::class, 'create'])->name('transfer.voucher.create');
 Route::get('/transfer-voucher', [TransferVoucherController::class, 'index'])->name('transfer.voucher.index');
 Route::post('/transfer-voucher', [TransferVoucherController::class, 'store'])->name('transfer.voucher.store');
+Route::get('/transfer-voucher/{id}/edit', [TransferVoucherController::class, 'edit'])->name('transfer.voucher.edit');
+Route::put('/transfer-voucher/{bank}', [TransferVoucherController::class, 'update'])->name('transfer.voucher.update');
+Route::delete('/transfer-voucher/{bank}', [TransferVoucherController::class, 'destroy'])->name('transfer.voucher.destroy');
+Route::post('transfer.voucher/export', [TransferVoucherController::class, 'exportToExcel'])->name('transfer.voucher.export');
 
 Route::get('/product-category/create', [ProductCategoryController::class, 'create'])->name('product.category.create');
 Route::get('/product-category', [ProductCategoryController::class, 'index'])->name('product.category.index');
 Route::post('/product-category', [ProductCategoryController::class, 'store'])->name('product.category.store'); // Ensure this is correct
+Route::post('product-category/export', [ProductCategoryController::class, 'exportToExcel'])->name('product.category.export');
 
 Route::get('/expense-category/create', [ExpenseCategoryController::class, 'create'])->name('expense.category.create');
 Route::get('/expense-category', [ExpenseCategoryController::class, 'index'])->name('expense.category.index');
 Route::post('/expense-category', [ExpenseCategoryController::class, 'store'])->name('expense.category.store');
+Route::post('/expense-category/export', [ExpenseCategoryController::class, 'exportToExcel'])->name('expense.category.export');
 
 Route::get('/bank-category/list', [BankController::class, 'index'])->name('bank.category.index');
 Route::get('/bank-category/create', [BankController::class, 'create'])->name('bank.category.create');
@@ -86,7 +101,7 @@ Route::post('/bank-category', [BankController::class, 'store'])->name('bank.cate
 Route::get('/bank-category/{id}/edit', [BankController::class, 'edit'])->name('bank-category.edit');
 Route::put('/bank-category/{bank}', [BankController::class, 'update'])->name('banks.update');
 Route::delete('/bank-category/{bank}', [BankController::class, 'destroy'])->name('banks.destroy');
-Route::get('bank-category/export', [BankController::class, 'exportToExcel'])->name('bank.category.export');
+Route::post('bank-category/export', [BankController::class, 'exportToExcel'])->name('bank.category.export');
 
 Route::get('/payment-method-category/list', [PaymentMethodController::class, 'index'])->name('payment-method.category.index');
 Route::get('/payment-method-category/create', [PaymentMethodController::class, 'create'])->name('payment-method.category.create');
@@ -94,10 +109,12 @@ Route::post('/payment-method-category', [PaymentMethodController::class, 'store'
 Route::get('/payment-method-category/{id}/edit', [PaymentMethodController::class, 'edit'])->name('payment-method-category.edit');
 Route::put('/payment-method-category/{bank}', [PaymentMethodController::class, 'update'])->name('payment-method.update');
 Route::delete('/payment-method-category/{bank}', [PaymentMethodController::class, 'destroy'])->name('payment-method.destroy');
+Route::post('payment-method-category/export', [PaymentMethodController::class, 'exportToExcel'])->name('payment-method.category.export');
 
 Route::get('/specification/create', [SpecificationController::class, 'create'])->name('specification.category.create');
 Route::get('/specification', [SpecificationController::class, 'index'])->name('specification.category.index');
 Route::post('/specification', [SpecificationController::class, 'store'])->name('specification.category.store');
+Route::post('specification/export', [SpecificationController::class, 'exportToExcel'])->name('specification.export');
 
 
 //Route::get('/wastages/create', [WastageController::class, 'create'])->name('wastages.create');
@@ -106,6 +123,10 @@ Route::post('/specification', [SpecificationController::class, 'store'])->name('
 Route::get('/wastages', [WastageController::class, 'index'])->name('wastages.index');
 Route::get('/wastages/create', [WastageController::class, 'create'])->name('wastage.create'); // Define the create route
 Route::post('/wastages/store', [WastageController::class, 'store'])->name('wastages.store'); // Define the store route
+Route::get('/wastages/{id}/edit', [WastageController::class, 'edit'])->name('wastages.edit');
+Route::put('/wastages/{bank}', [WastageController::class, 'update'])->name('wastages.update');
+Route::delete('/wastages/{bank}', [WastageController::class, 'destroy'])->name('wastages.destroy');
+Route::post('wastages/export', [WastageController::class, 'exportToExcel'])->name('wastages.export');
 
 Route::get('/sell-payment/create', [SellPaymentController::class, 'create'])->name('sell-payment.create');
 

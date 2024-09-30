@@ -89,4 +89,9 @@ class ExpenseCategoryController extends Controller
     {
         //
     }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'expense_categories.xlsx');
+    }
 }

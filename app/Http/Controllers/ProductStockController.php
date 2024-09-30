@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\ProductStock; // Ensure this line is present
 use Illuminate\Http\Request;
 
@@ -55,5 +56,10 @@ public function index(Request $request)
 
         // Redirect or return response
         return redirect()->route('product.stock.index')->with('success', 'Product stock added successfully.');
+    }
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'product_stock.xlsx');
     }
 }

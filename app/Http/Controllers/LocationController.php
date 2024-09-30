@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BankCategoryExport;
 use App\Models\Location; // Import the expense model
 use Illuminate\Http\Request;
 
@@ -48,5 +49,10 @@ class LocationController extends Controller
         // Redirect to the index page with a success message
         return redirect()->route('locations.index')->with('success', 'Location added successfully.');
     } 
+    // Add this method to your controller
+    public function exportToExcel()
+    {
+        return Excel::download(new BankCategoryExport, 'locations.xlsx');
+    }
     
 }

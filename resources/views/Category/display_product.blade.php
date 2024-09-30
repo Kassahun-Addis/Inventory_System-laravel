@@ -7,7 +7,7 @@
 <h2 style="text-align: center; padding:10px;">Product Category List</h2>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-    <!-- <a href="{{ route('bank.category.create') }}" class="btn btn-primary">Add New</a> -->
+    <!-- <a href="{{ route('product.category.create') }}" class="btn btn-primary">Add New</a> -->
     </div>
     
     @if(session('success'))
@@ -18,7 +18,7 @@
     <!-- Entries selection and Add New button -->
     <div class="col-12 col-md-6 d-flex justify-content-between mb-2 mb-md-0">
         <!-- Per Page Selection -->
-        <form action="{{ route('bank.category.index') }}" method="GET" class="form-inline" style="flex: 1;">
+        <form action="{{ route('product.category.index') }}" method="GET" class="form-inline" style="flex: 1;">
             <div class="form-group">
                 <span>Show
                     <select name="perPage" class="form-control" onchange="this.form.submit()" style="display: inline-block; width: auto;">
@@ -33,12 +33,12 @@
         </form>
 
         <!-- Add New Button -->
-        <a href="{{ route('bank.category.create') }}" class="btn btn-primary ml-2">Add New</a>
+        <a href="{{ route('product.category.create') }}" class="btn btn-primary ml-2">Add New</a>
     </div>
 
     <!-- Search and Export buttons -->
     <div class="col-12 col-md-6 d-flex justify-content-end align-items-center">
-        <form action="{{ route('bank.category.index') }}" method="GET" class="form-inline" style="flex: 1;">
+        <form action="{{ route('product.category.index') }}" method="GET" class="form-inline" style="flex: 1;">
             <div class="form-group w-100" style="display: flex; align-items: center;">
                 <!-- Search input takes more space on small devices -->
                 <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request('search') }}" style="flex-grow: 1; margin-right: 5px; min-width: 0;">
@@ -53,14 +53,14 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="exportDropdown">
                         <a class="dropdown-item" href="javascript:void(0);" onclick="printAllBankDetails()">PDF</a>
-                        <a class="dropdown-item" href="{{ route('bank.category.export') }}">Excel</a>
+                        <a class="dropdown-item" href="{{ route('product.category.export') }}">Excel</a>
                     </div>
                 </div>
 
                 <!-- Separate buttons for larger devices -->
                 <div class="d-none d-md-block ml-1">
                     <button type="button" class="btn btn-primary" onclick="printAllBankDetails()">PDF</button>
-                    <button type="button" class="btn btn-primary ml-1" onclick="window.location.href='{{ route('bank.category.export') }}'">Excel</button>
+                    <button type="button" class="btn btn-primary ml-1" onclick="window.location.href='{{ route('product.category.export') }}'">Excel</button>
                 </div>
             </div>
         </form>
@@ -84,7 +84,15 @@
                 <td>{{ $products->id }}</td>
                 <td>{{ $products->name }}</td>
                 <td>{{ $products->description }}</td>
-                <!--  -->
+                <td class="text-nowrap">
+                            <a href="{{ route('transfer.voucher.edit', $bank->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('transfer.voucher.destroy', $bank->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                            </form>
+                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->WastageID }}', '{{ $bank->Product_name }}','{{ $bank->Quantity }}', '{{ $bank->WastageDate }}', '{{ $bank->Reason }}', '{{ $bank->unit }}')">Print</button>
+                </td>
             </tr>
             @endforeach
         </tbody>
