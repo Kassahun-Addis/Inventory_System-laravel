@@ -5,6 +5,10 @@
 @section('content')
     <div class="container mt-4">
         <h3>Add New Customer</h3>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+        <div class="form-section">
         <form action="{{ route('customers.store') }}" method="POST">
             @csrf
             <div class="row">
@@ -44,5 +48,6 @@
 
             </div>
         </form>
-    </div>
+     </div>
+</div>
 @endsection

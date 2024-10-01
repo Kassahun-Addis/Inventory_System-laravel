@@ -44,7 +44,7 @@ Route::post('assets/export', [AssetController::class, 'exportToExcel'])->name('a
 //Route::get('/Product_Stock/product_stock', [AssetController::class, 'product_stock'])->name('Product_Stock.product_stock');
 //Route::get('/customer.create', [CustomerController::class, 'create'])->name('customer.create');
 //Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
-Route::get('customer/create', [CustomerController::class, 'create'])->name('customer.create');
+Route::get('customers/create', [CustomerController::class, 'create'])->name('customer.create');
 Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
 Route::post('customers/store', [CustomerController::class, 'store'])->name('customers.store');
 Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
@@ -62,7 +62,7 @@ Route::delete('/product.stock/{bank}', [ProductStockController::class, 'destroy'
 Route::post('product-stock/export', [ProductStockController::class, 'exportToExcel'])->name('product-stock.export');
 
 
-Route::post('/product-stock/store', [ProductStockController::class, 'store'])->name('product.stock.store'); // Add this line
+Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store'); // Add this line
 Route::get('/employee', [EmployeeController::class, 'create'])->name('employee.create');
 Route::get('/employee/list', [EmployeeController::class, 'index'])->name('employee.index');
 Route::get('/employee/{id}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');

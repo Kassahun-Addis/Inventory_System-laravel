@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Exports\BankCategoryExport;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class EmployeeController extends Controller
         $perPage = $request->input('perPage', 10); // Get the number of items per page, default to 10
 
         // Query the banks with search and pagination
-         $suppliers = Supplier::when($search, function ($query) use ($search) {
+         $suppliers = Employee::when($search, function ($query) use ($search) {
             return $query->where('bank_name', 'like', '%' . $search . '%')
                         ->orWhere('description', 'like', '%' . $search . '%');
         })->paginate($perPage);

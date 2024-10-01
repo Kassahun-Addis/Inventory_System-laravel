@@ -27,6 +27,10 @@
                         <input type="number" class="form-control" id="purchase_price" name="purchase_price" required>
                     </div>
                     <div class="form-group">
+                        <label for="department" class="required">Department</label>
+                        <input type="text" class="form-control" id="department" name="department" required>
+                    </div>
+                    <div class="form-group">
                         <label for="status" class="required">Status</label>
                         <select class="form-control" id="status" name="status" required>
                             <option value="">Please select</option>
@@ -38,20 +42,18 @@
                         <label for="serial_no">Serial No</label>
                         <input type="text" class="form-control" id="serial_no" name="serial_no">
                     </div>
+                    
+                </div>
+                <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea class="form-control" id="description" name="description"></textarea>
                     </div>
-                </div>
-                <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="assigned_to">Assigned To</label>
                         <input type="text" class="form-control" id="assigned_to" name="assigned_to">
                     </div>
-                    <div class="form-group">
-                        <label for="department" class="required">Department</label>
-                        <input type="text" class="form-control" id="department" name="department" required>
-                    </div>
+                    
                     <div class="form-group">
                         <label for="purchase_date" class="required">Purchase Date</label>
                         <input type="date" class="form-control" id="purchase_date" name="purchase_date" required>
@@ -66,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary btn-custom">Save</button>
                 <button type="reset" class="btn btn-secondary btn-custom">Reset</button>
                 <a href="{{ route('assets.index') }}" class="btn btn-secondary btn-custom">Back to list</a> <!-- Updated Back to list button -->

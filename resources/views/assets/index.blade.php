@@ -95,13 +95,13 @@
                     <td>{{ $asset->department }}</td>
                     <td>{{ $asset->purchase_date }}</td>
                     <td class="text-nowrap">
-                            <a href="{{ route('transfer.voucher.edit', $bank->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('transfer.voucher.destroy', $bank->id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('assets.edit', $asset->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('assets.destroy', $asset->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                             </form>
-                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->WastageID }}', '{{ $bank->Product_name }}','{{ $bank->Quantity }}', '{{ $bank->WastageDate }}', '{{ $bank->Reason }}', '{{ $bank->unit }}')">Print</button>
+                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $asset->WastageID }}', '{{ $asset->Product_name }}','{{ $asset->Quantity }}', '{{ $asset->WastageDate }}', '{{ $asset->Reason }}', '{{ $asset->unit }}')">Print</button>
                     </td>
                 </tr>
             @endforeach
