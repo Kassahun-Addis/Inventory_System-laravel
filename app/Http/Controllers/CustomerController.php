@@ -44,8 +44,48 @@ class CustomerController extends Controller
         // Create a new customer
         Customer::create($request->all());
 
-        return redirect()->route('customerss.index')->with('success', 'Customer added successfully.');
+        return redirect()->route('customers.index')->with('success', 'Customer added successfully.');
     }
+
+    public function edit($id)
+    {
+        $bank = Customer::findOrFail($id);
+        return view('Customer.edit_customer', compact('bank'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'company' => 'nullable|string|max:100',
+            'address' => 'nullable|string|max:100',
+            'phone_no' => 'required|numeric',
+            'email' => 'nullable|email|max:100',
+            'tin_no' => 'required|numeric',
+        ]);
+
+        $bank = Customer::findOrFail($id);
+        $bank->update([
+            'name' => $request->input('name'),
+            'company' => $request->input('company'),
+            'address' => $request->input('address'),
+            'phone_no' => $request->input('phone_no'),
+            'email' => $request->input('email'),
+            'tin_no' => $request->input('tin_no'),
+
+        ]);
+
+        return redirect()->route('customers.index')->with('success', 'Customer updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $bank = Customer::findOrFail($id);
+        $bank->delete();
+
+        return redirect()->route('customers.index')->with('success', 'Customer deleted successfully.');
+    }
+
     // Add this method to your controller
     public function exportToExcel()
     {

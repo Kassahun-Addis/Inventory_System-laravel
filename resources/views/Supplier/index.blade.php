@@ -82,7 +82,6 @@
                     <th>Email</th>
                     <th>TIN No</th>
                     <th>Product Type</th>
-                    <th>Created At</th>
                     <th>Actions</th>
             </tr>
         </thead>
@@ -98,7 +97,7 @@
                         <td>{{ $supplier->phone_no }}</td>
                         <td>{{ $supplier->email }}</td>
                         <td>{{ $supplier->tin_no }}</td>
-                        <td>{{ $supplier->create_at }}</td>
+                        <td>{{ $supplier->product_type }}</td>
                         <td class="text-nowrap">
                             <a href="{{ route('transfer.voucher.edit', $bank->id) }}" class="btn btn-warning btn-sm">Edit</a>
                             <form action="{{ route('transfer.voucher.destroy', $bank->id) }}" method="POST" style="display:inline;">

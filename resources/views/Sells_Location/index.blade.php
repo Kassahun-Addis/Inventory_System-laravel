@@ -18,7 +18,7 @@
     <!-- Entries selection and Add New button -->
     <div class="col-12 col-md-6 d-flex justify-content-between mb-2 mb-md-0">
         <!-- Per Page Selection -->
-        <form action="{{ route('locations.index') }}" method="GET" class="form-inline" style="flex: 1;">
+        <form action="{{ route('location.index') }}" method="GET" class="form-inline" style="flex: 1;">
             <div class="form-group">
                 <span>Show
                     <select name="perPage" class="form-control" onchange="this.form.submit()" style="display: inline-block; width: auto;">
@@ -38,7 +38,7 @@
 
     <!-- Search and Export buttons -->
     <div class="col-12 col-md-6 d-flex justify-content-end align-items-center">
-        <form action="{{ route('locations.index') }}" method="GET" class="form-inline" style="flex: 1;">
+        <form action="{{ route('location.index') }}" method="GET" class="form-inline" style="flex: 1;">
             <div class="form-group w-100" style="display: flex; align-items: center;">
                 <!-- Search input takes more space on small devices -->
                 <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request('search') }}" style="flex-grow: 1; margin-right: 5px; min-width: 0;">
@@ -85,8 +85,8 @@
                 <td>{{ $location->name }}</td> <!-- Updated variable reference -->
                 <td>{{ $location->description }}</td> <!-- Updated variable reference -->
                 <td class="text-nowrap">
-                            <a href="{{ route('transfer.voucher.edit', $bank->location_id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('transfer.voucher.destroy', $bank->location_id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('location.edit', $bank->location_id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('location.destroy', $bank->location_id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>

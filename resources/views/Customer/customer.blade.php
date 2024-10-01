@@ -21,12 +21,12 @@
                         <label for="address">Address</label>
                         <input type="text" id="address" name="address" class="form-control">
                     </div>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="phone_no" class="required">Phone Number</label>
                         <input type="number" id="phone_no" name="phone_no" required class="form-control">
                     </div>
-                </div>
-                <div class="col-md-6">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" class="form-control">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group mt-3">
+            <div class="d-flex justify-content-center mt-4">
                 <button type="submit" class="btn btn-primary">Save</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>
                 <a href="{{ route('customers.index') }}" class="btn btn-secondary btn-custom">Back to list</a> <!-- Updated Back to list button -->

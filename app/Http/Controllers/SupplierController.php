@@ -56,6 +56,51 @@ class SupplierController extends Controller
         // Redirect to the index page with a success message
         return redirect()->route('supplier.index')->with('success', 'Supplier added successfully.');
     }
+
+    public function edit($id)
+    {
+        $bank = Supplier::findOrFail($id);
+        return view('Supplier.edit_supplier', compact('bank'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string',
+            'company' => 'required|string|max:255',
+            'address' => 'required|string',
+            'contact_person' => 'required|string|max:255',
+            'phone_no' => 'required|numeric',
+            'email' => 'required|email|max:255',
+            'tin_no' => 'required|numeric',
+            'product_type' => 'required|string',
+        ]);
+
+        $bank = Supplier::findOrFail($id);
+        $bank->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'company' => $request->input('company'),
+            'address' => $request->input('address'),
+            'contact_person' => $request->input('contact_person'),
+            'phone_no' => $request->input('phone_no'),
+            'email' => $request->input('email'),
+            'tin_no' => $request->input('tin_no'),
+            'product_type' => $request->input('product_type'),
+        ]);
+
+        return redirect()->route('supplier.index')->with('success', 'Supplier updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $bank = Supplier::findOrFail($id);
+        $bank->delete();
+
+        return redirect()->route('supplier.index')->with('success', 'Supplier deleted successfully.');
+    }
+
     // Add this method to your controller
     public function exportToExcel()
     {

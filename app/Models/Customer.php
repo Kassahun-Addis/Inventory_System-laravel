@@ -18,7 +18,6 @@ class Customer extends Model
         'phone_no', 
         'email', 
         'tin_no',
-        'create_at'
     ];
 
     public $timestamps = false;

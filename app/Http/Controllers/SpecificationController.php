@@ -19,8 +19,7 @@ class SpecificationController extends Controller
 
         // Query the banks with search and pagination
          $specifications = Specification::when($search, function ($query) use ($search) {
-            return $query->where('bank_name', 'like', '%' . $search . '%')
-                        ->orWhere('description', 'like', '%' . $search . '%');
+            return $query->where('description', 'like', '%' . $search . '%');
         })->paginate($perPage);
         return view('Category.display_specification', compact('specifications'));
    }
@@ -69,26 +68,40 @@ class SpecificationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductCategory $productCategory)
+    public function edit($id)
     {
-        //
+        $bank = Specification::findOrFail($id);
+        return view('Category.edit_specification', compact('bank'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'description' => 'required|string',
+        ]);
+
+        $bank = Specification::findOrFail($id);
+        $bank->update([
+            'description' => $request->input('description'),
+        ]);
+
+        return redirect()->route('specification.category.index')->with('success', 'Specification Category Category updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductCategory $productCategory)
+    public function destroy($id)
     {
-        //
+        $bank = Specification::findOrFail($id);
+        $bank->delete();
+
+        return redirect()->route('specification.category.index')->with('success', 'Specification Category Category deleted successfully.');
     }
+
     // Add this method to your controller
     public function exportToExcel()
     {

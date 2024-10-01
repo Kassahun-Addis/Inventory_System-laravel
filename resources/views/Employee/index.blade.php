@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Supplier')
+@section('title', 'Employee')
 
 @section('content')
 <div class="container mt-5">
@@ -75,14 +75,12 @@
                    <th>ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Company</th>
-                    <th>Address</th>
-                    <th>Contact Person</th>
                     <th>Phone No</th>
                     <th>Email</th>
-                    <th>TIN No</th>
-                    <th>Product Type</th>
-                    <th>Created At</th>
+                    <th>Contact Info</th>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>Hire Date</th>
                     <th>Actions</th>
             </tr>
         </thead>
@@ -90,18 +88,17 @@
         @foreach ($suppliers as $supplier)
                     <tr>
                         <td>{{ $supplier->id }}</td>
-                        <td>{{ $supplier->first_name }}</td>
-                        <td>{{ $supplier->last_name }}</td>
-                        <td>{{ $supplier->company }}</td>
-                        <td>{{ $supplier->address }}</td>
-                        <td>{{ $supplier->contact_person }}</td>
+                        <td>{{ $supplier->FirstName }}</td>
+                        <td>{{ $supplier->LastName }}</td>
                         <td>{{ $supplier->phone_no }}</td>
                         <td>{{ $supplier->email }}</td>
-                        <td>{{ $supplier->tin_no }}</td>
-                        <td>{{ $supplier->create_at }}</td>
+                        <td>{{ $supplier->ContactInfo }}</td>
+                        <td>{{ $supplier->Position }}</td>
+                        <td>{{ $supplier->Department }}</td>
+                        <td>{{ $supplier->HireDate }}</td>
                         <td class="text-nowrap">
-                            <a href="{{ route('transfer.voucher.edit', $bank->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('transfer.voucher.destroy', $bank->id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('employee.edit', $bank->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('employee.destroy', $bank->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>

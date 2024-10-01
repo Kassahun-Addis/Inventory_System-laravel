@@ -62,8 +62,8 @@
                         <option value="spec2">Specification 2</option>
                     </select>
                 </div>
-                <div class="flex space-x-2">
-                    <button type="submit" class="btn-primary">Save</button>
+                <div class="d-flex justify-content-center mt-4">
+                  <button type="submit" class="btn-primary">Save</button>
                     <button type="reset" class="btn-secondary">Reset</button>
                     <a href="{{ route('product.stock.index') }}" class="btn btn-secondary btn-custom">Back to list</a> <!-- Updated Back to list button -->
                     </div>

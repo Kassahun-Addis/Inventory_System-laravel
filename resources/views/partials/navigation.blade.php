@@ -103,7 +103,7 @@
 
 <!-- Header Section -->
 <header class="header bg-blue-600 text-white p-2 flex justify-between items-center shadow-lg">
-    <h1 class="text-2xl font-bold">OSAKA</h1>
+    <h2 class="text-2xl font-bold">OSAKA</h2>
     <div class="flex items-center">
         <a href="#" class="text-white relative mr-4">
             <i class="fas fa-bell"></i>

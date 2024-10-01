@@ -49,6 +49,37 @@ class LocationController extends Controller
         // Redirect to the index page with a success message
         return redirect()->route('locations.index')->with('success', 'Location added successfully.');
     } 
+
+    public function edit($id)
+    {
+        $bank = Location::findOrFail($id);
+        return view('Sells_Location.edit_location', compact('bank'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        $bank = Location::findOrFail($id);
+        $bank->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ]);
+
+        return redirect()->route('location.index')->with('success', 'Location updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $bank = Location::findOrFail($id);
+        $bank->delete();
+
+        return redirect()->route('location.index')->with('success', 'Location deleted successfully.');
+    }
+
     // Add this method to your controller
     public function exportToExcel()
     {

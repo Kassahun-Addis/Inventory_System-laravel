@@ -52,6 +52,45 @@ class ExpenseController extends Controller
         // Redirect to the index page with a success message
         return redirect()->route('expenses.index')->with('success', 'Expense added successfully.');
     }
+
+
+    public function edit($id)
+    {
+        $bank = Expense::findOrFail($id);
+        return view('Expense.edit_expense', compact('bank'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'expense_date' => 'required|string|max:255',
+            'expense_for' => 'required|string',
+            'amount' => 'required|numeric',
+            'expense_category' => 'required|numeric',
+            'expense_description' => 'required|numeric',
+        ]);
+
+        $bank = Expense::findOrFail($id);
+        $bank->update([
+            'expense_date' => $request->input('expense_date'),
+            'category' => $request->input('category'),
+            'amount' => $request->input('amount'),
+            'expense_category' => $request->input('expense_category'),
+            'expense_description' => $request->input('expense_description'),
+        ]);
+
+        return redirect()->route('expenses.index')->with('success', 'Expense updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $bank = Expense::findOrFail($id);
+        $bank->delete();
+
+        return redirect()->route('expenses.index')->with('success', 'Expense deleted successfully.');
+    }
+
+
     // Add this method to your controller
     public function exportToExcel()
     {

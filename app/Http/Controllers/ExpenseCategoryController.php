@@ -69,26 +69,42 @@ class ExpenseCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductCategory $productCategory)
+    public function edit($id)
     {
-        //
+        $bank = ExpenseCategory::findOrFail($id);
+        return view('Category.edit_expense', compact('bank'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        $bank = ExpenseCategory::findOrFail($id);
+        $bank->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ]);
+
+        return redirect()->route('expense.category.index')->with('success', 'Expense Category updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductCategory $productCategory)
+    public function destroy($id)
     {
-        //
+        $bank = ExpenseCategory::findOrFail($id);
+        $bank->delete();
+
+        return redirect()->route('expense.category.index')->with('success', 'Expense Category deleted successfully.');
     }
+    
     // Add this method to your controller
     public function exportToExcel()
     {

@@ -5,7 +5,7 @@
 @section('content')
         <div class="form-section mt-4">
             <h3>Employees Information</h3>
-            <form action="#" method="POST">
+            <form action="{{ route('employee.store') }}" method="POST">
                 @csrf
                 <div class ="row">
                 <div class="col-md-6">
@@ -44,7 +44,7 @@
                     <input type="date" id="HireDate" name="HireDate" required>
                 </div>
                 
-                <div class="flex space-x-2">
+                <div class="d-flex justify-content-center mt-4">
                     <button type="submit" class="btn-primary">Save</button>
                     <button type="reset" class="btn-secondary">Reset</button>
                     <a href="{{ route('employee.index') }}" class="btn btn-secondary btn-custom">Back to list</a> <!-- Updated Back to list button -->

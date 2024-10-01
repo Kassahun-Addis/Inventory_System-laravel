@@ -57,6 +57,47 @@ public function index(Request $request)
         // Redirect or return response
         return redirect()->route('product.stock.index')->with('success', 'Product stock added successfully.');
     }
+
+    public function edit($id)
+    {
+        $bank = ProductStock::findOrFail($id);
+        return view('Product_Stock.edit_product_stock', compact('bank'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'product_name' => 'required|string|max:255',
+            'category' => 'required|string',
+            'quantity' => 'required|numeric',
+            'production_cost' => 'required|numeric',
+            'selling_price' => 'required|numeric',
+            'alert_quantity' => 'required|numeric',
+            'details_specification' => 'required|string|max:255',
+        ]);
+
+        $bank = ProductStock::findOrFail($id);
+        $bank->update([
+            'product_name' => $request->input('product_name'),
+            'category' => $request->input('category'),
+            'quantity' => $request->input('quantity'),
+            'production_cost' => $request->input('production_cost'),
+            'selling_price' => $request->input('selling_price'),
+            'alert_quantity' => $request->input('alert_quantity'),
+            'details_specification' => $request->input('details_specification'),
+        ]);
+
+        return redirect()->route('product.stock.index')->with('success', 'Product Stock updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $bank = ProductStock::findOrFail($id);
+        $bank->delete();
+
+        return redirect()->route('product.stock.index')->with('success', 'Product Stock deleted successfully.');
+    }
+
     // Add this method to your controller
     public function exportToExcel()
     {
