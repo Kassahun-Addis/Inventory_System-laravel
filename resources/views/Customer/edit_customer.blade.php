@@ -25,7 +25,7 @@
             @csrf
             @method('PUT') <!-- Method spoofing for PUT -->
         <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="name" class="required">Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $bank->name) }}" required>
@@ -51,13 +51,14 @@
                         <input type="text" class="form-control" id="tin_no" name="tin_no" value="{{ old('tin_no', $bank->tin_no) }}" required>
                         </div>
 
-                </div>
         
                 <!-- Centered buttons -->
                 <div class="d-flex justify-content-center mt-4">
                     <button type="submit" class="btn btn-primary btn-custom">Update</button>
                     <a href="{{ route('customers.index') }}" class="btn btn-secondary btn-custom">Cancel</a>
                 </div>
+                </div>
+
         </div>
         </form>
     </div>

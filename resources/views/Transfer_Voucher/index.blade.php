@@ -95,13 +95,13 @@
                 <td>{{ $shipment->ShippingCost }}</td>
                 <td>{{ $shipment->Status }}</td>
                 <td class="text-nowrap">
-                        <a href="{{ route('transfer.voucher.edit', $bank->ShipmentID) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('transfer.voucher.destroy', $bank->ShipmentID) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('transfer.voucher.edit', $shipment->ShipmentID) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('transfer.voucher.destroy', $shipment->ShipmentID) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                         </form>
-                        <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->WastageID }}', '{{ $bank->Product_name }}','{{ $bank->Quantity }}', '{{ $bank->WastageDate }}', '{{ $bank->Reason }}', '{{ $bank->unit }}')">Print</button>
+                        <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $shipment->WastageID }}', '{{ $shipment->Product_name }}','{{ $shipment->Quantity }}', '{{ $shipment->WastageDate }}', '{{ $shipment->Reason }}', '{{ $shipment->unit }}')">Print</button>
                 </td>
             </tr>
             @endforeach
@@ -145,7 +145,7 @@
 </div>
 </div>
 
-<!-- JavaScript function to print bank details in table format with headers on top -->
+<!-- JavaScript function to print shipment details in table format with headers on top -->
 <script>
 function printBankDetails(id, name, description) {
 const printWindow = window.open('', '', 'height=500,width=800');

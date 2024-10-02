@@ -91,13 +91,13 @@
                     <td>{{ $wastage->Reason }}</td>
                     <td>{{ $wastage->unit }}</td>
                     <td class="text-nowrap">
-                        <a href="{{ route('wastages.edit', $bank->WastageID) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('wastages.destroy', $bank->WastageID) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('wastages.edit', $wastage->WastageID) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('wastages.destroy', $wastage->WastageID) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                         </form>
-                        <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->WastageID }}', '{{ $bank->Product_name }}','{{ $bank->Quantity }}', '{{ $bank->WastageDate }}', '{{ $bank->Reason }}', '{{ $bank->unit }}')">Print</button>
+                        <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $wastage->WastageID }}', '{{ $wastage->Product_name }}','{{ $wastage->Quantity }}', '{{ $wastage->WastageDate }}', '{{ $wastage->Reason }}', '{{ $wastage->unit }}')">Print</button>
                     </td>
                 </tr>
             @endforeach
@@ -141,7 +141,7 @@
 </div>
 </div>
 
-<!-- JavaScript function to print bank details in table format with headers on top -->
+<!-- JavaScript function to print wastage details in table format with headers on top -->
 <script>
 function printBankDetails(id, product_name, quantity, wastage_date, reason, unit) {
 const printWindow = window.open('', '', 'height=500,width=800');

@@ -12,5 +12,6 @@ class PaymentMethod extends Model
     protected $fillable = [
         'name',        
     ];
+    public $timestamps = false; // Set to true if you want Laravel to manage created_at and updated_at
     
 }

@@ -9,8 +9,8 @@
 
         <div class="form-section mt-4">
             <h3>Shipment Information</h3>
-            <form action="#" method="POST">
-                @csrf
+            <form action="{{ route('transfer.voucher.store') }}" method="POST">
+               @csrf
                 <div class="row">
                 <div class="col-md-6">
                 <div class="form-group">

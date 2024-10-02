@@ -85,13 +85,13 @@
                 <td>{{ $location->name }}</td> <!-- Updated variable reference -->
                 <td>{{ $location->description }}</td> <!-- Updated variable reference -->
                 <td class="text-nowrap">
-                            <a href="{{ route('location.edit', $bank->location_id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('location.destroy', $bank->location_id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('location.edit', $location->location_id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('location.destroy', $location->location_id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                             </form>
-                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->WastageID }}', '{{ $bank->Product_name }}','{{ $bank->Quantity }}', '{{ $bank->WastageDate }}', '{{ $bank->Reason }}', '{{ $bank->unit }}')">Print</button>
+                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $location->WastageID }}', '{{ $location->Product_name }}','{{ $location->Quantity }}', '{{ $location->WastageDate }}', '{{ $location->Reason }}', '{{ $location->unit }}')">Print</button>
                 </td>
             </tr>
             @endforeach
@@ -135,7 +135,7 @@
 </div>
 </div>
 
-<!-- JavaScript function to print bank details in table format with headers on top -->
+<!-- JavaScript function to print location details in table format with headers on top -->
 <script>
 function printBankDetails(id, name, description) {
 const printWindow = window.open('', '', 'height=500,width=800');

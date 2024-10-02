@@ -48,6 +48,7 @@ class AssetController extends Controller
     ]);
 
     // Create a new asset entry using the AssetModel
+    // Explicitly map the form data to the correct columns
     $asset = AssetModel::create([
         'asset_name' => $request->input('asset_name'),
         'category' => $request->input('category'),

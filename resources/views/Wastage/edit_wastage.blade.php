@@ -48,7 +48,7 @@
                 
                     <div class="form-group">
                         <label for="unit" class="required">Unit</label>
-                        <input type="number" class="form-control" id="unit" name="unit" value="{{ old('unit', $bank->unit) }}" required>
+                        <input type="text" class="form-control" id="unit" name="unit" value="{{ old('unit', $bank->unit) }}" required>
                     </div>
                 </div>
             </div>

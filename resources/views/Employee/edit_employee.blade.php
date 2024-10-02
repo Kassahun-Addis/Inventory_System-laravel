@@ -51,7 +51,7 @@
                     </div>
                 <div class="form-group">
                     <label for="position" class="required">Position</label>
-                    <input type="number" class="form-control" id="position" name="position" value="{{ old('position', $bank->Position) }}" required>
+                    <input type="text" class="form-control" id="position" name="position" value="{{ old('position', $bank->Position) }}" required>
                     </div>
                 <div class="form-group">
                     <label for="department" class="required">Department</label>

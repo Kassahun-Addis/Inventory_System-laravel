@@ -7,7 +7,7 @@
 <h2 style="text-align: center; padding:10px;">Product Stock List</h2>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-    <!-- <a href="{{ route('product-stock.create') }}" class="btn btn-primary">Add New</a> -->
+    <!-- <a href="{{ route('product.stock.create') }}" class="btn btn-primary">Add New</a> -->
     </div>
     
     @if(session('success'))
@@ -18,7 +18,7 @@
     <!-- Entries selection and Add New button -->
     <div class="col-12 col-md-6 d-flex justify-content-between mb-2 mb-md-0">
         <!-- Per Page Selection -->
-        <form action="{{ route('product-stock.index') }}" method="GET" class="form-inline" style="flex: 1;">
+        <form action="{{ route('product.stock.index') }}" method="GET" class="form-inline" style="flex: 1;">
             <div class="form-group">
                 <span>Show
                     <select name="perPage" class="form-control" onchange="this.form.submit()" style="display: inline-block; width: auto;">
@@ -33,12 +33,12 @@
         </form>
 
         <!-- Add New Button -->
-        <a href="{{ route('product-stock.create') }}" class="btn btn-primary ml-2">Add New</a>
+        <a href="{{ route('product.stock.create') }}" class="btn btn-primary ml-2">Add New</a>
     </div>
 
     <!-- Search and Export buttons -->
     <div class="col-12 col-md-6 d-flex justify-content-end align-items-center">
-        <form action="{{ route('product-stock.index') }}" method="GET" class="form-inline" style="flex: 1;">
+        <form action="{{ route('product.stock.index') }}" method="GET" class="form-inline" style="flex: 1;">
             <div class="form-group w-100" style="display: flex; align-items: center;">
                 <!-- Search input takes more space on small devices -->
                 <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request('search') }}" style="flex-grow: 1; margin-right: 5px; min-width: 0;">
@@ -91,13 +91,13 @@
                     <td>{{ $stock->selling_price }}</td>
                     <td>{{ $stock->alert_quantity }}</td>
                     <td class="text-nowrap">
-                            <a href="{{ route('transfer.voucher.edit', $bank->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('transfer.voucher.destroy', $bank->id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('product.stock.edit', $stock->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('product.stock.destroy', $stock->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                             </form>
-                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->WastageID }}', '{{ $bank->Product_name }}','{{ $bank->Quantity }}', '{{ $bank->WastageDate }}', '{{ $bank->Reason }}', '{{ $bank->unit }}')">Print</button>
+                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $stock->WastageID }}', '{{ $stock->Product_name }}','{{ $stock->Quantity }}', '{{ $stock->WastageDate }}', '{{ $stock->Reason }}', '{{ $stock->unit }}')">Print</button>
                     </td>
                 </tr>
             @endforeach

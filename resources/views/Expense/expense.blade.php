@@ -10,10 +10,10 @@
     @endif
     
     <div class="form-section">
-        <form action="{{ route('expenses.store') }}" method="POST">
+       <form action="{{ route('expenses.store') }}" method="POST">
             @csrf
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row" >
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="expense_date" class="required">Expense Date</label>
                         <input type="date" class="form-control" id="expense_date" name="expense_date" required>

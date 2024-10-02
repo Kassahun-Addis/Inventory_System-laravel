@@ -47,9 +47,16 @@ class EmployeeController extends Controller
     
         // Create a new expense
         //$expense = expense::create($request->all());
-        $expense = Employee::create($request->except('_token'));
-
-    
+        $expense = Employee::create([
+            'FirstName' => $request->input('first_name'),
+            'LastName' => $request->input('last_name'),
+            'phone_no' => $request->input('phone_no'),
+            'email' => $request->input('email'),
+            'ContactInfo' => $request->input('contactinfo'),
+            'Position' => $request->input('position'),
+            'Department' => $request->input('department'),
+            'HireDate' => $request->input('HireDate'),
+        ]);
         // Log the newly created expense
         \Log::info('New Employee created:', $expense->toArray());
     
@@ -59,7 +66,7 @@ class EmployeeController extends Controller
 
     public function edit($id)
     {
-        $bank = Expense::findOrFail($id);
+        $bank = Employee::findOrFail($id);
         return view('Employee.edit_employee', compact('bank'));
     }
 
@@ -78,13 +85,13 @@ class EmployeeController extends Controller
 
         $bank = Employee::findOrFail($id);
         $bank->update([
-            'FirstName' => $request->input('first_name'),
-            'LasttName' => $request->input('last_name'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
             'phone_no' => $request->input('phone_no'),
             'email' => $request->input('email'),
-            'ContactInfo' => $request->input('contactinfo'),
-            'Position' => $request->input('position'),
-            'Department' => $request->input('department'),
+            'contactinfo' => $request->input('contactinfo'),
+            'position' => $request->input('position'),
+            'department' => $request->input('department'),
             'HireDate' => $request->input('HireDate'),
         ]);
 

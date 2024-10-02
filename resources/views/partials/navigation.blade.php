@@ -153,7 +153,7 @@
             </ul>
         </li>
         <!-- Other Links -->
-        <li><a href="{{ route('customer.create') }}" class="flex items-center p-2 hover:bg-gray-700 rounded"><i class="fas fa-users mr-2"></i>Customer</a></li>
+        <li><a href="{{ route('customers.create') }}" class="flex items-center p-2 hover:bg-gray-700 rounded"><i class="fas fa-users mr-2"></i>Customer</a></li>
         <li><a href="{{ route('employee.create') }}" class="flex items-center p-2 hover:bg-gray-700 rounded"><i class="fas fa-user-tie mr-2"></i>Employee</a></li>
         <li><a href="{{ route('expense.create') }}" class="flex items-center p-2 hover:bg-gray-700 rounded"><i class="fas fa-wallet mr-2"></i>Expense</a></li>
         <li><a href="{{ route('supplier.create') }}" class="flex items-center p-2 hover:bg-gray-700 rounded"><i class="fas fa-truck mr-2"></i>Supplier</a></li>

@@ -79,19 +79,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($product as $products)
+            @foreach($products as $product)
             <tr>
-                <td>{{ $products->id }}</td>
-                <td>{{ $products->name }}</td>
-                <td>{{ $products->description }}</td>
+                <td>{{ $product->id }}</td>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->description }}</td>
                 <td class="text-nowrap">
-                            <a href="{{ route('transfer.voucher.edit', $bank->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('transfer.voucher.destroy', $bank->id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('product.category.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('product.category.destroy', $product->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                             </form>
-                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->WastageID }}', '{{ $bank->Product_name }}','{{ $bank->Quantity }}', '{{ $bank->WastageDate }}', '{{ $bank->Reason }}', '{{ $bank->unit }}')">Print</button>
+                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $product->WastageID }}', '{{ $product->Product_name }}','{{ $product->Quantity }}', '{{ $product->WastageDate }}', '{{ $product->Reason }}', '{{ $product->unit }}')">Print</button>
                 </td>
             </tr>
             @endforeach
@@ -101,28 +101,28 @@
 
 <!-- Showing entries information -->
 <div class="mt-3">
-    Showing {{ $product->firstItem() }} to {{ $product->lastItem() }} of {{ $product->total() }} entries
+    Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }} entries
 </div>
 
 <!-- Customized Pagination -->
 <div class="mt-3 d-flex justify-content-between align-items-center">
     <div>
-        @if ($product->onFirstPage())
+        @if ($products->onFirstPage())
             <span class="btn btn-light disabled">Previous</span>
         @else
-            <a href="{{ $product->previousPageUrl() }}" class="btn btn-light">Previous</a>
+            <a href="{{ $products->previousPageUrl() }}" class="btn btn-light">Previous</a>
         @endif
 
-        @foreach (range(1, $product->lastPage()) as $i)
-            @if ($i == $product->currentPage())
+        @foreach (range(1, $products->lastPage()) as $i)
+            @if ($i == $products->currentPage())
                 <span class="btn btn-primary disabled">{{ $i }}</span>
             @else
-                <a href="{{ $product->url($i) }}" class="btn btn-light">{{ $i }}</a>
+                <a href="{{ $products->url($i) }}" class="btn btn-light">{{ $i }}</a>
             @endif
         @endforeach
 
-        @if ($product->hasMorePages())
-            <a href="{{ $product->nextPageUrl() }}" class="btn btn-light">Next</a>
+        @if ($products->hasMorePages())
+            <a href="{{ $products->nextPageUrl() }}" class="btn btn-light">Next</a>
         @else
             <span class="btn btn-light disabled">Next</span>
         @endif
@@ -130,12 +130,12 @@
 
     <!-- Default pagination links -->
     <div>
-        {{ $product->links() }}
+        {{ $products->links() }}
     </div>
 </div>
 </div>
 
-<!-- JavaScript function to print bank details in table format with headers on top -->
+<!-- JavaScript function to print products details in table format with headers on top -->
 <script>
 function printBankDetails(id, name, description) {
 const printWindow = window.open('', '', 'height=500,width=800');
@@ -171,7 +171,7 @@ printWindow.print();
 <!-- JavaScript function to print all bank details in table format -->
 <script>
 function printAllBankDetails() {
-const product = @json($product->items()); // Use items() to get the array of bank details
+const product = @json($products->items()); // Use items() to get the array of bank details
 
 // Check if product is an array
 console.log(product); // Debugging line to see the content of $product

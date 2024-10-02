@@ -26,33 +26,40 @@ class TransferVoucherController extends Controller
         return view('Transfer_Voucher.transfer_voucher'); // Returns the product_stock.blade.php view
     }
 
+   
     public function store(Request $request)
-    {
-        // Log the incoming request data
-        \Log::info('Storing shipments data:', $request->all());
-    
-        // Validate the incoming request data
-        $request->validate([
-            'Assigned_Person' => 'nullable|string|max:50',
-            'Carrier' => 'nullable|string',
-            'Shipment_Date' => 'required|date',
-            'Tracking_Number' => 'nullable|string',
-            'Shipping_Address' => 'nullable|string|max:50',
-            'Shipping_Cost' => 'required|integer',
-            'Status' => 'nullable|string',
-        ]);
+{
+    // Log the incoming request data
+    \Log::info('Storing shipments data:', $request->all());
 
-        // Create a new expense
-        //$expense = expense::create($request->all());
-        $shipments = Shipment::create($request->except('_token'));
+    // Validate the incoming request data
+    $request->validate([
+        'Assigned_Person' => 'nullable|string|max:50',
+        'Carrier' => 'nullable|string',
+        'Shipment_Date' => 'required|date',
+        'Tracking_Number' => 'nullable|string',
+        'Shipping_Address' => 'nullable|string|max:50',
+        'Shipping_Cost' => 'required|integer',
+        'Status' => 'nullable|string',
+    ]);
 
-    
-        // Log the newly created expense
-        \Log::info('New shipments created:', $shipments->toArray());
-    
-        // Redirect to the index page with a success message
-        return redirect()->route('shipments.index')->with('success', 'shipments added successfully.');
-    }
+    // Explicitly map the form data to the correct columns
+    $shipment = Shipment::create([
+        'Assigned_person' => $request->input('Assigned_Person'),
+        'Carrier' => $request->input('Carrier'),
+        'ShipmentDate' => $request->input('Shipment_Date'),
+        'TrackingNumber' => $request->input('Tracking_Number'),
+        'ShippingAddress' => $request->input('Shipping_Address'),
+        'ShippingCost' => $request->input('Shipping_Cost'),
+        'Status' => $request->input('Status'),
+    ]);
+
+    // Log the newly created shipment
+    \Log::info('New shipment created:', $shipment->toArray());
+
+    // Redirect to the index page with a success message
+    return redirect()->route('transfer.voucher.index')->with('success', 'Shipment added successfully.');
+}
 
     public function edit($id)
     {

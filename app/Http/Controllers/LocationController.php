@@ -47,7 +47,7 @@ class LocationController extends Controller
         \Log::info('New Location created:', $locations->toArray());
 
         // Redirect to the index page with a success message
-        return redirect()->route('locations.index')->with('success', 'Location added successfully.');
+        return redirect()->route('location.index')->with('success', 'Location added successfully.');
     } 
 
     public function edit($id)

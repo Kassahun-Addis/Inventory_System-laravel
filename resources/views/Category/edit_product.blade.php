@@ -21,7 +21,7 @@
     @endif
 
     <div class="form-section">
-        <form action="{{ route('expense.update', $bank->id) }}" method="POST">
+        <form action="{{ route('product.category.update', $bank->id) }}" method="POST">
             @csrf
             @method('PUT') <!-- Method spoofing for PUT -->
             <div class="row">
@@ -39,7 +39,7 @@
            
             <div class="d-flex justify-content-center mt-4">
                 <button type="submit" class="btn btn-primary btn-custom">Update</button>
-                <a href="{{ route('expense.category.index') }}" class="btn btn-secondary btn-custom">Cancel</a>
+                <a href="{{ route('product.category.index') }}" class="btn btn-secondary btn-custom">Cancel</a>
             </div>
          </div>
     </div>

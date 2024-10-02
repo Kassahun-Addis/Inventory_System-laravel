@@ -85,13 +85,13 @@
                 <td>{{ $expense->name }}</td>
                 <td>{{ $expense->description }}</td>
                 <td class="text-nowrap">
-                            <a href="{{ route('transfer.voucher.edit', $bank->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('transfer.voucher.destroy', $bank->id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('expense.category.edit', $expense->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('expense.category.destroy', $expense->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                             </form>
-                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->WastageID }}', '{{ $bank->Product_name }}','{{ $bank->Quantity }}', '{{ $bank->WastageDate }}', '{{ $bank->Reason }}', '{{ $bank->unit }}')">Print</button>
+                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $expense->WastageID }}', '{{ $expense->Product_name }}','{{ $expense->Quantity }}', '{{ $expense->WastageDate }}', '{{ $expense->Reason }}', '{{ $expense->unit }}')">Print</button>
                 </td>
             </tr>
             @endforeach

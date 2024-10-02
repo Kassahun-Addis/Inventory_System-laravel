@@ -83,7 +83,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($expenses as $expense)
+            @foreach($expense as $expense)
             <tr>
                 <td>{{ $expense->id }}</td>
                 <td>{{ $expense->expense_date }}</td>

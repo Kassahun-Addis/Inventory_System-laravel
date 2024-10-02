@@ -20,7 +20,7 @@ return new class extends Migration
         $table->string('ContactInfo', 100)->nullable();
         $table->string('Position', 100)->nullable();
         $table->string('Department', 100)->nullable();
-        $table->timestamp('HireDate')->useCurrent();
+        $table->date('HireDate')->nullable();
         
     });
 }

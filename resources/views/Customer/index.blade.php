@@ -33,7 +33,7 @@
         </form>
 
         <!-- Add New Button -->
-        <a href="{{ route('customer.create') }}" class="btn btn-primary ml-2">Add New</a>
+        <a href="{{ route('customers.create') }}" class="btn btn-primary ml-2">Add New</a>
     </div>
 
     <!-- Search and Export buttons -->
@@ -93,13 +93,13 @@
                         <td>{{ $customer->email }}</td>
                         <td>{{ $customer->tin_no }}</td>
                         <td class="text-nowrap">
-                            <a href="{{ route('transfer.voucher.edit', $bank->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('transfer.voucher.destroy', $bank->id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                             </form>
-                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $bank->WastageID }}', '{{ $bank->Product_name }}','{{ $bank->Quantity }}', '{{ $bank->WastageDate }}', '{{ $bank->Reason }}', '{{ $bank->unit }}')">Print</button>
+                            <button class="btn btn-info btn-sm ml-1" onclick="printBankDetails('{{ $customer->WastageID }}', '{{ $customer->Product_name }}','{{ $customer->Quantity }}', '{{ $customer->WastageDate }}', '{{ $customer->Reason }}', '{{ $customer->unit }}')">Print</button>
                         </td>
                     </tr>
                 @endforeach

@@ -44,7 +44,7 @@ Route::post('assets/export', [AssetController::class, 'exportToExcel'])->name('a
 //Route::get('/Product_Stock/product_stock', [AssetController::class, 'product_stock'])->name('Product_Stock.product_stock');
 //Route::get('/customer.create', [CustomerController::class, 'create'])->name('customer.create');
 //Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
-Route::get('customers/create', [CustomerController::class, 'create'])->name('customer.create');
+Route::get('customers/create', [CustomerController::class, 'create'])->name('customers.create');
 Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
 Route::post('customers/store', [CustomerController::class, 'store'])->name('customers.store');
 Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
@@ -118,9 +118,9 @@ Route::post('product-category/export', [ProductCategoryController::class, 'expor
 Route::get('/expense-category/create', [ExpenseCategoryController::class, 'create'])->name('expense.category.create');
 Route::get('/expense-category', [ExpenseCategoryController::class, 'index'])->name('expense.category.index');
 Route::post('/expense-category', [ExpenseCategoryController::class, 'store'])->name('expense.category.store');
-Route::get('/expense/{id}/edit', [ExpenseCategoryController::class, 'edit'])->name('expense.edit');
-Route::put('/expense/{bank}', [ExpenseCategoryController::class, 'update'])->name('expense.update');
-Route::delete('/expense/{bank}', [ExpenseCategoryController::class, 'destroy'])->name('expense.destroy');
+Route::get('/expense-category/{id}/edit', [ExpenseCategoryController::class, 'edit'])->name('expense.category.edit');
+Route::put('/expense-category/{bank}', [ExpenseCategoryController::class, 'update'])->name('expense.category.update');
+Route::delete('/expense-category/{bank}', [ExpenseCategoryController::class, 'destroy'])->name('expense.category.destroy');
 Route::post('/expense-category/export', [ExpenseCategoryController::class, 'exportToExcel'])->name('expense.category.export');
 
 Route::get('/bank-category/list', [BankController::class, 'index'])->name('bank.category.index');

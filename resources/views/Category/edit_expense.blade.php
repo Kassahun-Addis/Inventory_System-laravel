@@ -21,7 +21,7 @@
     @endif
 
     <div class="form-section">
-        <form action="{{ route('expense.update', $bank->id) }}" method="POST">
+        <form action="{{ route('expense.category.update', $bank->id) }}" method="POST">
             @csrf
             @method('PUT') <!-- Method spoofing for PUT -->
             <div class="row">
